@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import url
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # for login page
+    url(r'^login/$', auth_views.login),
+    # for logout
+    url(r'^logout/$', auth_views.logout),
     path('faceRecognition/', include('faceRecognition.urls')),
 ]

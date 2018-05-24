@@ -1,26 +1,36 @@
-{% if Sessions_list %}
-  {% for session in Sessions_list %}
+{% if user.is_authenticated %}
+    <p>hello</p>
+    <p>welcome {{ user.username }}</p>
+    <p><a href="/logout">Logout</a></p>
 
-    <ul>
-      <li>
-        <h2> Session-Name: {{ session.session_name }}</h2>
-        <h2> Session-strength: {{ session.session_strength }}</h2>
-          <form action="{% url 'faceRecognition:session-delete' session.id %}" method="post" style="display: inline;">
-            {% csrf_token %}
-            <button type='submit' class='btn btn-default btn-sm'>Delete</button>
-          </form>
-          <form action="{% url 'faceRecognition:session-update' session.id %}" method="post" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-default btn-sm">Update</button>
-          </form>
-        </li>
-      </ul>
-  {% endfor %}
+    {% if Sessions_list %}
+      {% for session in Sessions_list %}
+
+        <ul>
+          <li>
+            <h2> Session-Name: {{ session.session_name }}</h2>
+            <h2> Session-strength: {{ session.session_strength }}</h2>
+              <form action="{% url 'faceRecognition:session-delete' session.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type='submit' class='btn btn-default btn-sm'>Delete</button>
+              </form>
+              <form action="{% url 'faceRecognition:session-update' session.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-default btn-sm">Update</button>
+              </form>
+            </li>
+          </ul>
+      {% endfor %}
+
+    {% else %}
+      <h1>No Sessions found in database</h1>
+    {% endif %}
+      <form action="{% url 'faceRecognition:session-entry' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class='btn btn-default btn-sm'>Create Session</button>
+      </form>
 
 {% else %}
-  <h1>No Sessions found in database</h1>
+    <p><a href="/login">Login</a></p>
+    <p><a href="/register">Register</a></p>
 {% endif %}
-  <form action="{% url 'faceRecognition:session-entry' %}" method="post" style="display: inline;">
-    {% csrf_token %}
-    <button type="submit" class='btn btn-default btn-sm'>Create Session</button>
-  </form>

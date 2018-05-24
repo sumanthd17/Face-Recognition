@@ -16,4 +16,7 @@ urlpatterns = [
 
     #faceRecognition/session/(?P<pk>[0-9]+)/delete
     url(r'^session/(?P<pk>[0-9]+)/delete$', views.SessionDelete.as_view(), name='session-delete'),
+
+    # register user
+    url(r'^register/', views.register),
 ]
