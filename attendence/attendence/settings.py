@@ -102,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOGIN_REDIRECT_URL = '/faceRecognition'
+LOGOUT_REDIRECT_URL = '/faceRecognition'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

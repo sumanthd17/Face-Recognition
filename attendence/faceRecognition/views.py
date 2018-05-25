@@ -36,6 +36,9 @@ class SessionDelete(DeleteView):
     # the delete button forwards to the url mentioned below.
     success_url = reverse_lazy('faceRecognition:index')
 
+def ActivateCamera(request, pk):
+    return HttpResponse('You are at the activate camera page!!!')
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)

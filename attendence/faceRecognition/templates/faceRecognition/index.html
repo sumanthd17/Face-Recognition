@@ -18,6 +18,10 @@
                 {% csrf_token %}
                 <button type="submit" class="btn btn-default btn-sm">Update</button>
               </form>
+              <form action="{% url 'faceRecognition:activate-camera' session.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-default btn-sm">Activate Camera</button>
+              </form>
             </li>
           </ul>
       {% endfor %}
