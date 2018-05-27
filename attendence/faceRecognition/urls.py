@@ -20,6 +20,9 @@ urlpatterns = [
     # for activating camera
     url(r'^session/(?P<pk>[0-9]+)/ActivateCamera/$', views.ActivateCamera, name='activate-camera'),
 
+    #for taking attendence
+    url(r'^session/(?P<pk>[0-9]+)/TakeAttendence/$', views.TakeAttendence, name='take-attendence'),
+
     # register user
     url(r'^register/', views.register),
 ]

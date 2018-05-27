@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django import forms
 from .forms import UserRegistrationForm
+import os
 
 # Create your views here.
 from faceRecognition.models import Session
@@ -37,7 +38,23 @@ class SessionDelete(DeleteView):
     success_url = reverse_lazy('faceRecognition:index')
 
 def ActivateCamera(request, pk):
-    return HttpResponse('You are at the activate camera page!!!')
+    if not os.path.exists('./AvailableSessions/' + pk):
+        os.mkdir('./AvailableSessions/' + pk)
+        HttpResponse('directory created!!')
+    return HttpResponse(pk)
+
+def TakeAttendence(request, pk):
+    import face_recognition
+    known_face_encodings = []
+    known_face_names = []
+    pk = str(pk)
+    for image_name in os.listdir('./KnownImages/' + pk):
+        image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name)
+        image_face_encoding = face_recognition.face_encodings(image)[0]
+        known_face_encodings.append(image_face_encoding)
+        known_face_names.append(image_name)
+        #print(known_face_names)
+    return HttpResponse(known_face_names)
 
 def register(request):
     if request.method == 'POST':
