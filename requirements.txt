@@ -1,5 +1,9 @@
-certifi==2018.4.16
+click==6.7
 Django==2.0.5
 djangorestframework==3.8.2
+dlib==19.13.99
+face-recognition==1.2.2
+face-recognition-models==0.3.0
+numpy==1.14.3
+Pillow==5.1.0
 pytz==2018.4
-wincertstore==0.2
