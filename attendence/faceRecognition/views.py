@@ -41,6 +41,10 @@ def ActivateCamera(request, pk):
     if not os.path.exists('./AvailableSessions/' + pk):
         os.mkdir('./AvailableSessions/' + pk)
         HttpResponse('directory created!!')
+        # here after creating the directory the images take from the camera should 
+        # be saved to the images directory
+        # take attendence then takes these images and finds the faces and saves all the 
+        # faces to the faces directory 
     return HttpResponse(pk)
 
 def TakeAttendence(request, pk):
@@ -54,7 +58,24 @@ def TakeAttendence(request, pk):
         known_face_encodings.append(image_face_encoding)
         known_face_names.append(image_name)
         #print(known_face_names)
-    return HttpResponse(known_face_names)
+
+    face_locations = []
+    face_encodings = []
+    for image_name in os.listdir('./AvailableSessions/' + pk + '/Images'):
+        image = face_recognition.load_image_file('./AvailableSessions/' + pk + '/Images/' + image_name)
+        face_locations = face_recognition.face_locations(image)
+        face_encodings = face_recognition.face_encodings(image, face_locations)
+        
+        face_names = []
+        for face_encoding in face_encodings:
+            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+            name = "Unknown"
+
+            if True in matches:
+                first_match_index = matches.index(True)
+                name = known_face_names[first_match_index]
+            face_names.append(name)
+    return HttpResponse(face_names)
 
 def register(request):
     if request.method == 'POST':
