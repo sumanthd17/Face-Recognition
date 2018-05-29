@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login
 from django import forms
 from .forms import UserRegistrationForm
 import os
+from PIL import Image
 
 # Create your views here.
 from faceRecognition.models import Session
@@ -64,6 +65,19 @@ def TakeAttendence(request, pk):
     for image_name in os.listdir('./AvailableSessions/' + pk + '/Images'):
         image = face_recognition.load_image_file('./AvailableSessions/' + pk + '/Images/' + image_name)
         face_locations = face_recognition.face_locations(image)
+        # saving the face found to new directory
+        counter = 1
+        for face_location in face_locations:
+            top, right, bottom, left = face_location
+            face_image = image[top:bottom, left:right]
+            pil_image = Image.fromarray(face_image)
+            req_path = './AvailableSessions/' + pk + '/faces_from_Image'
+            if not os.path.exists(req_path):
+                os.mkdir(req_path)
+            pil_image.save(req_path + '/' + str(counter) + '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+            counter += 1
+            #pil_image.show()
+
         face_encodings = face_recognition.face_encodings(image, face_locations)
         
         face_names = []
