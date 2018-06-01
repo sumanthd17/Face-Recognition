@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from faceRecognition import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +25,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login),
     # for logout
     url(r'^logout/$', auth_views.logout),
+    # for register
+    url(r'^register/$', views.register),
     path('faceRecognition/', include('faceRecognition.urls')),
 ]

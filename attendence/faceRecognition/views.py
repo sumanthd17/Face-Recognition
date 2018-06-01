@@ -103,7 +103,7 @@ def register(request):
                 User.objects.create_user(username, email, password)
                 user = authenticate(username = username, password = password)
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/faceRecognition')
             else:
                 raise forms.ValidationError('Looks like a username with that email or password already exists')
 

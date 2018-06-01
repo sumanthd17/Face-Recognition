@@ -1,10 +1,13 @@
 import face_recognition
 import cv2
+import os
 
 video_capture = cv2.VideoCapture(0)
 
-sumanth_image = face_recognition.load_image_file('./temp_pictures/sumanth.jpg')
-sumanth_face_encoding = face_recognition.face_encodings(sumanth)[0]
+print(os.getcwd())
+
+sumanth_image = face_recognition.load_image_file('temp6.jpeg')
+sumanth_face_encoding = face_recognition.face_encodings(sumanth_image)[0]
 
 known_face_encodings = [
 	sumanth_face_encoding
