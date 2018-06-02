@@ -9,6 +9,7 @@ from django import forms
 from .forms import UserRegistrationForm
 import os
 from PIL import Image
+import json
 
 # Create your views here.
 from faceRecognition.models import Session
@@ -52,12 +53,14 @@ def TakeAttendence(request, pk):
     import face_recognition
     known_face_encodings = []
     known_face_names = []
+    students_attendence_data = {}
     pk = str(pk)
     for image_name in os.listdir('./KnownImages/' + pk):
         image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name)
         image_face_encoding = face_recognition.face_encodings(image)[0]
         known_face_encodings.append(image_face_encoding)
         known_face_names.append(image_name)
+        students_attendence_data[image_name] = 0
         #print(known_face_names)
 
     face_locations = []
@@ -88,8 +91,12 @@ def TakeAttendence(request, pk):
             if True in matches:
                 first_match_index = matches.index(True)
                 name = known_face_names[first_match_index]
+                students_attendence_data[name] = 1
             face_names.append(name)
-    return HttpResponse(face_names)
+
+    import collections
+    students_attendence_data = collections.OrderedDict(sorted(students_attendence_data.items()))
+    return HttpResponse(json.dumps(students_attendence_data))
 
 def register(request):
     if request.method == 'POST':
