@@ -10,6 +10,8 @@ from .forms import UserRegistrationForm
 import os
 from PIL import Image  # only for testing, not required in deployment
 import json
+from faceRecognition.models import Session, Attendence
+import datetime
 
 # Create your views here.
 from faceRecognition.models import Session
@@ -99,6 +101,13 @@ def TakeAttendence(request, pk):
 
     import collections
     students_attendence_data = collections.OrderedDict(sorted(students_attendence_data.items()))        # structuring the data in JSON format
+    session_name = Session.objects.filter(pk=pk)
+    print(session_name)
+    latest_attendence = Attendence()
+    latest_attendence.session_attendence = json.dumps(students_attendence_data)
+    latest_attendence.date = datetime.datetime.now()
+    latest_attendence.session_name = Session(pk)
+    latest_attendence.save()
     return HttpResponse(json.dumps(students_attendence_data))                                           # displaying the data on the web page
 
 def register(request):
