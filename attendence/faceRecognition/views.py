@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django import forms
 from .forms import UserRegistrationForm
 import os
-from PIL import Image
+from PIL import Image  # only for testing, not required in deployment
 import json
 
 # Create your views here.
@@ -54,21 +54,24 @@ def TakeAttendence(request, pk):
     known_face_encodings = []
     known_face_names = []
     students_attendence_data = {}
-    pk = str(pk)
+    pk = str(pk)    # pk is the primary key fro the session
+    # knownImages is the ID card photos folder
     for image_name in os.listdir('./KnownImages/' + pk):
-        image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name)
-        image_face_encoding = face_recognition.face_encodings(image)[0]
-        known_face_encodings.append(image_face_encoding)
-        known_face_names.append(image_name)
-        students_attendence_data[image_name] = 0
+        image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name)              #loading each image from the folder
+        image_face_encoding = face_recognition.face_encodings(image)[0]                                 #find the face encoding for each known photo
+        known_face_encodings.append(image_face_encoding)                                                # saving it in known_face_encodings list
+        known_face_names.append(image_name)                                                             # here known_face_name is the image name AKA roll number
+        students_attendence_data[image_name] = 0                                                        # defining the status of students (initial state all are assumed absent)
         #print(known_face_names)
 
     face_locations = []
     face_encodings = []
+    # available sessions is the folder containting the photos taken from the camera
     for image_name in os.listdir('./AvailableSessions/' + pk + '/Images'):
-        image = face_recognition.load_image_file('./AvailableSessions/' + pk + '/Images/' + image_name)
-        face_locations = face_recognition.face_locations(image)
+        image = face_recognition.load_image_file('./AvailableSessions/' + pk + '/Images/' + image_name) #loading the image
+        face_locations = face_recognition.face_locations(image)                                         # finding the faces in the image
         # saving the face found to new directory
+        #all the faces from the images are saves into the AvailableSessions/pk/faces_from_image directory
         counter = 1
         for face_location in face_locations:
             top, right, bottom, left = face_location
@@ -81,22 +84,22 @@ def TakeAttendence(request, pk):
             counter += 1
             #pil_image.show()
 
-        face_encodings = face_recognition.face_encodings(image, face_locations)
+        face_encodings = face_recognition.face_encodings(image, face_locations)                         # findin the face encodings for the extracted faces
         
         face_names = []
         for face_encoding in face_encodings:
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-            name = "Unknown"
+            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)               # each face_encoding is compares with all the known face encodings
+            name = "Unknown"                                                                            # initially all faces are unknown
 
             if True in matches:
-                first_match_index = matches.index(True)
+                first_match_index = matches.index(True)                                                 # if a match is found the student is marked present
                 name = known_face_names[first_match_index]
                 students_attendence_data[name] = 1
             face_names.append(name)
 
     import collections
-    students_attendence_data = collections.OrderedDict(sorted(students_attendence_data.items()))
-    return HttpResponse(json.dumps(students_attendence_data))
+    students_attendence_data = collections.OrderedDict(sorted(students_attendence_data.items()))        # structuring the data in JSON format
+    return HttpResponse(json.dumps(students_attendence_data))                                           # displaying the data on the web page
 
 def register(request):
     if request.method == 'POST':
