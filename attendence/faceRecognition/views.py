@@ -90,7 +90,7 @@ def TakeAttendence(request, pk):
         
         face_names = []
         for face_encoding in face_encodings:
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)               # each face_encoding is compares with all the known face encodings
+            matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.5)               # each face_encoding is compares with all the known face encodings
             name = "Unknown"                                                                            # initially all faces are unknown
 
             if True in matches:
