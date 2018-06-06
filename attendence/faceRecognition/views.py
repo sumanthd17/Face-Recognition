@@ -12,6 +12,7 @@ from PIL import Image  # only for testing, not required in deployment
 import json
 from faceRecognition.models import Session, Attendence
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from faceRecognition.models import Session
@@ -41,15 +42,22 @@ class SessionDelete(DeleteView):
     # the delete button forwards to the url mentioned below.
     success_url = reverse_lazy('faceRecognition:index')
 
+@csrf_exempt
 def ActivateCamera(request, pk):
-    if not os.path.exists('./AvailableSessions/' + pk):
+    '''if not os.path.exists('./AvailableSessions/' + pk):
         os.mkdir('./AvailableSessions/' + pk)
         HttpResponse('directory created!!')
         # here after creating the directory the images take from the camera should 
         # be saved to the images directory
         # take attendence then takes these images and finds the faces and saves all the 
         # faces to the faces directory 
-    return HttpResponse(pk)
+    return HttpResponse(pk)'''
+    import requests
+    url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
+    data = {"henry cavil": "201601001", "ben affleck": "201601002", "gal gadot": "201601003", "kit harrington":"201601006"}
+    header = {'Content-type': 'application/json'}
+    r = requests.post(url, json=data, headers=header)
+    return HttpResponse(r.status_code)
 
 def TakeAttendence(request, pk):
     import face_recognition

@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
 
 class UserRegistrationForm(forms.Form):
     username = forms.CharField(
