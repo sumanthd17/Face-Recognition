@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -52,14 +52,25 @@ def ActivateCamera(request, pk):
         # take attendence then takes these images and finds the faces and saves all the 
         # faces to the faces directory 
     return HttpResponse(pk)'''
+    # sending the list of students for checking attendence
     import requests
     url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
-    data = {"henry cavil": "201601001", "ben affleck": "201601002", "gal gadot": "201601003", "kit harrington":"201601006"}
-    header = {'Content-type': 'application/json'}
-    r = requests.post(url, json=data, headers=header)
-    return HttpResponse(r.status_code)
+    data = {"201601001": 0, "201601002": 0,"201601003": 0,"201601006": 0}
+    header = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    r = requests.post(url, data=json.dumps(data), headers=header)
+    return JsonResponse(data)
 
+@csrf_exempt
 def TakeAttendence(request, pk):
+    import json
+    import requests
+    from django.http import StreamingHttpResponse
+    url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
+    if request.method == 'POST':
+        #return HttpResponse("qwe")
+        students_attendence_data = requests.get(url).json()
+        return JsonResponse(students_attendence_data)
+
     import face_recognition
     known_face_encodings = []
     known_face_names = []
