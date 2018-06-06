@@ -69,16 +69,15 @@ def TakeAttendence(request, pk):
     if request.method == 'POST':
         #return HttpResponse("qwe")
         students_attendence_data = requests.get(url).json()
-        return JsonResponse(students_attendence_data)
+        #return JsonResponse(students_attendence_data)
 
     import face_recognition
     known_face_encodings = []
     known_face_names = []
-    students_attendence_data = {}
     pk = str(pk)    # pk is the primary key fro the session
     # knownImages is the ID card photos folder
-    for image_name in os.listdir('./KnownImages/' + pk):
-        image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name)              #loading each image from the folder
+    for image_name in students_attendence_data:
+        image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name + '.jpg')              #loading each image from the folder
         image_face_encoding = face_recognition.face_encodings(image)[0]                                 #find the face encoding for each known photo
         known_face_encodings.append(image_face_encoding)                                                # saving it in known_face_encodings list
         known_face_names.append(image_name)                                                             # here known_face_name is the image name AKA roll number
