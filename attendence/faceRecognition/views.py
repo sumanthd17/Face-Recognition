@@ -53,12 +53,16 @@ def ActivateCamera(request, pk):
         # faces to the faces directory 
     return HttpResponse(pk)'''
     # sending the list of students for checking attendence
-    import requests
+    '''import requests
     url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
     data = {"201601001": 0, "201601002": 0,"201601003": 0,"201601006": 0}
     header = {'Content-type': 'application/json', 'Accept': 'application/json'}
-    r = requests.post(url, data=json.dumps(data), headers=header)
-    return JsonResponse(data)
+    r = requests.post(url, data=json.dumps(data), headers=header)'''
+    if request.method == 'POST' and request.is_ajax():
+        return HttpResponse(request.POST['2016010101'])
+    else:
+        return HttpResponse('data not recieved')
+    #return JsonResponse(data)
 
 @csrf_exempt
 def TakeAttendence(request, pk):
