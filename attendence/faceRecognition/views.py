@@ -142,25 +142,38 @@ def TakeAttendence(request):
         known_face_encodings = []
         known_face_names = data['studentlist']
         names = []
-        for image_name in known_face_names:
-            image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name + '.jpg')
+        attendence = {}
+        for image_name in os.listdir(PATH + '/KnownImages'):
+            image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name) # add '.jpg' after wards
             image_face_encoding = face_recognition.face_encodings(image)[0]
             known_face_encodings.append(image_face_encoding)
             names.append(image_name)
+            attendence[image_name] = 0
+            print(image_name)
 
         # comparing faces
-        for face_encoding in face_encodings:
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance = 0.5)
-            if True in matches:
+        dummy = []
+        counter = 0
+        for known_face_encoding in known_face_encodings:
+            matches = face_recognition.compare_faces(face_encodings, known_face_encoding,tolerance = 0.45)
+            #print(matches)
+            ''''if True in matches:
                 first_match_index = matches.index(True)
                 name = names[first_match_index]
                 data['studentlist'][name] = 1
+                attendence[name] = 1'''
+            if True in matches:
+                attendence[names[counter]] = 1
+            else:
+                attendence[names[counter]] = 0
+            counter += 1
+
 
         data['error'] = 'NO ERROR'
         data['status'] = 'SUCCESS'
 
-    print(data)
-    return JsonResponse(data)
+    print(dummy)
+    return JsonResponse(attendence)
 '''@csrf_exempt
 def TakeAttendence(request, pk):
     import json
