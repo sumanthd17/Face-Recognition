@@ -64,7 +64,7 @@ def TakeAttendence(request):
     '''data = request.body
     data = json.loads(str(data, 'utf-8'))
     print(data)'''
-    data =  {
+    data =   {
       "classRoom": "1",
       "courseNumber": "CS231",
       "attendanceDate": "08/06/2018",
@@ -72,14 +72,31 @@ def TakeAttendence(request):
       "toPeriod": "07:30",
       "status": "",
       "error": "",
-      "studentlist": {
-          "201601001": 0,
-          "201601002": 0,
-          "201601003": 0,
-          "201601004": 0,
+      "studentlist": [
+        {
+          "201601001": 0
+        },
+        {
+          "201601002": 0
+        },
+        {
+          "201601003": 0
+        },
+        {
+          "201601004": 0
+        },
+        {
           "201601006": 0
         }
+      ]
     }
+    data1={}
+    for i in range(0,len(data["studentlist"])):
+      for key in data["studentlist"][i].keys():
+       data1[key]=0
+
+    data.update(studentlist=data1)
+
     room = data['classRoom']
     if not os.path.exists('./AvailableSessions/' + str(room)):
         data['error'] = 'path for pictures does not exist'
@@ -137,7 +154,6 @@ def TakeAttendence(request):
             if True in matches:
                 first_match_index = matches.index(True)
                 name = names[first_match_index]
-                print(name)
                 data['studentlist'][name] = 1
 
         data['error'] = 'NO ERROR'
