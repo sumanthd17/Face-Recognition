@@ -61,28 +61,52 @@ def ActivateCamera(request, pk):
 
 @csrf_exempt
 def TakeAttendence(request):
-    data = request.body
+    '''data = request.body
     data = json.loads(str(data, 'utf-8'))
-    print(data)
+    print(data)'''
+    data =  {
+      "classRoom": "1",
+      "courseNumber": "CS231",
+      "attendanceDate": "08/06/2018",
+      "fromPeriod": "07:00",
+      "toPeriod": "07:30",
+      "status": "",
+      "error": "",
+      "studentlist": {
+          "201601001": 0,
+          "201601002": 0,
+          "201601003": 0,
+          "201601004": 0,
+          "201601006": 0
+        }
+    }
     room = data['classRoom']
     if not os.path.exists('./AvailableSessions/' + str(room)):
         data['error'] = 'path for pictures does not exist'
         data['status'] = 'error'
         # send response back
+        data['error'] = 'PATH NOT FOUND'
+        data['status'] = 'ERROR OCCURED'
+
     courseID = data['courseNumber']
     if not os.path.exists('./AvailableSessions/' + str(room) + '/' + str(courseID)):
         data['error'] = 'path for classroom does not exist'
         data['status'] = 'error'
         # send response back
+        data['error'] = 'PATH NOT FOUND'
+        data['status'] = 'ERROR OCCURED'
+
     else:
         import glob
+        import face_recognition
+
         face_locations = []
         face_encodings = []
         PATH = './AvailableSessions/' + str(room) + '/' + str(courseID)
         # encodings for the group photo
-        list_of_files = glob.glob(PATH + '/*')
+        list_of_files = glob.glob(PATH + '/*.jpg')
         latest_photo = max(list_of_files, key=os.path.getctime)
-        image = face_recognition.load_image_file(PATH + '/' + str(latest_photo))
+        image = face_recognition.load_image_file(str(latest_photo))
         face_locations = face_recognition.face_locations(image)
         face_encodings = face_recognition.face_encodings(image, face_locations)
         # saving extracted images to faces_from_Image folder
@@ -91,7 +115,7 @@ def TakeAttendence(request):
             top, right, bottom, left = face_location
             face_image = image[top:bottom, left:right]
             pil_image = Image.fromarray(face_image)
-            req_path = PATH + '/faces_from_Image'
+            req_path = PATH + '/faces_from_Image/'
             if not os.path.exists(req_path):
                 os.mkdir(req_path)
             pil_image.save(req_path + '/' + str(counter) + '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
@@ -100,20 +124,27 @@ def TakeAttendence(request):
         # encodings for the id card photos
         known_face_encodings = []
         known_face_names = data['studentlist']
+        names = []
         for image_name in known_face_names:
             image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name + '.jpg')
             image_face_encoding = face_recognition.face_encodings(image)[0]
             known_face_encodings.append(image_face_encoding)
+            names.append(image_name)
 
         # comparing faces
-        for known_face_encoding in known_face_encodings:
-            matches = face_recognition.compare_faces(known_face_encoding, face_encodings, tolerance = 0.5)
+        for face_encoding in face_encodings:
+            matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance = 0.5)
             if True in matches:
                 first_match_index = matches.index(True)
-                name = known_face_encoding[first_match_index]
+                name = names[first_match_index]
+                print(name)
                 data['studentlist'][name] = 1
-        print(data)
-    return HttpResponse(data)
+
+        data['error'] = 'NO ERROR'
+        data['status'] = 'SUCCESS'
+
+    print(data)
+    return JsonResponse(data)
 '''@csrf_exempt
 def TakeAttendence(request, pk):
     import json
