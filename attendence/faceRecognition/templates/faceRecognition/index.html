@@ -22,7 +22,7 @@
                 {% csrf_token %}
                 <button type="submit" class="btn btn-default btn-sm">Activate Camera</button>
               </form>
-              <form action="{% url 'faceRecognition:take-attendence' session.id %}" method="post" style="display: inline;">
+              <form action="{% url 'faceRecognition:take-attendence' %}" method="post" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-default btn-sm">Take Attendence</button>
               </form>

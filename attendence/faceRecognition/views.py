@@ -44,27 +44,77 @@ class SessionDelete(DeleteView):
 
 @csrf_exempt
 def ActivateCamera(request, pk):
-    '''if not os.path.exists('./AvailableSessions/' + pk):
+    if not os.path.exists('./AvailableSessions/' + pk):
         os.mkdir('./AvailableSessions/' + pk)
         HttpResponse('directory created!!')
         # here after creating the directory the images take from the camera should 
         # be saved to the images directory
         # take attendence then takes these images and finds the faces and saves all the 
         # faces to the faces directory 
-    return HttpResponse(pk)'''
+    return HttpResponse(pk)
     # sending the list of students for checking attendence
     '''import requests
     url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
     data = {"201601001": 0, "201601002": 0,"201601003": 0,"201601006": 0}
     header = {'Content-type': 'application/json', 'Accept': 'application/json'}
     r = requests.post(url, data=json.dumps(data), headers=header)'''
-    if request.method == 'POST' and request.is_ajax():
-        return HttpResponse(request.POST['2016010101'])
-    else:
-        return HttpResponse('data not recieved')
-    #return JsonResponse(data)
 
 @csrf_exempt
+def TakeAttendence(request):
+    data = request.body
+    data = json.loads(str(data, 'utf-8'))
+    print(data)
+    room = data['classRoom']
+    if not os.path.exists('./AvailableSessions/' + str(room)):
+        data['error'] = 'path for pictures does not exist'
+        data['status'] = 'error'
+        # send response back
+    courseID = data['courseNumber']
+    if not os.path.exists('./AvailableSessions/' + str(room) + '/' + str(courseID)):
+        data['error'] = 'path for classroom does not exist'
+        data['status'] = 'error'
+        # send response back
+    else:
+        import glob
+        face_locations = []
+        face_encodings = []
+        PATH = './AvailableSessions/' + str(room) + '/' + str(courseID)
+        # encodings for the group photo
+        list_of_files = glob.glob(PATH + '/*')
+        latest_photo = max(list_of_files, key=os.path.getctime)
+        image = face_recognition.load_image_file(PATH + '/' + str(latest_photo))
+        face_locations = face_recognition.face_locations(image)
+        face_encodings = face_recognition.face_encodings(image, face_locations)
+        # saving extracted images to faces_from_Image folder
+        counter = 1
+        for face_location in face_locations:
+            top, right, bottom, left = face_location
+            face_image = image[top:bottom, left:right]
+            pil_image = Image.fromarray(face_image)
+            req_path = PATH + '/faces_from_Image'
+            if not os.path.exists(req_path):
+                os.mkdir(req_path)
+            pil_image.save(req_path + '/' + str(counter) + '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+            counter += 1
+
+        # encodings for the id card photos
+        known_face_encodings = []
+        known_face_names = data['studentlist']
+        for image_name in known_face_names:
+            image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name + '.jpg')
+            image_face_encoding = face_recognition.face_encodings(image)[0]
+            known_face_encodings.append(image_face_encoding)
+
+        # comparing faces
+        for known_face_encoding in known_face_encodings:
+            matches = face_recognition.compare_faces(known_face_encoding, face_encodings, tolerance = 0.5)
+            if True in matches:
+                first_match_index = matches.index(True)
+                name = known_face_encoding[first_match_index]
+                data['studentlist'][name] = 1
+        print(data)
+    return HttpResponse(data)
+'''@csrf_exempt
 def TakeAttendence(request, pk):
     import json
     import requests
@@ -130,7 +180,7 @@ def TakeAttendence(request, pk):
     latest_attendence.date = datetime.datetime.now()
     latest_attendence.session_name = Session(pk)
     latest_attendence.save()
-    return HttpResponse(json.dumps(students_attendence_data))                                           # displaying the data on the web page
+    return HttpResponse(json.dumps(students_attendence_data))'''                                           # displaying the data on the web page
 
 def register(request):
     if request.method == 'POST':
