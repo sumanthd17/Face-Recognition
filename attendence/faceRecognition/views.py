@@ -71,8 +71,8 @@ def TakeAttendence(request):
     print(data)'''
 
     data =   {
-      "classRoom": "1",
-      "courseNumber": "CS231",
+      "classRoom": "102",
+      "courseNumber": "ICS200",
       "attendanceDate": "08/06/2018",
       "fromPeriod": "07:00",
       "toPeriod": "07:30",
@@ -80,19 +80,10 @@ def TakeAttendence(request):
       "error": "",
       "studentlist": [
         {
-          "201601001": 0
+          "S20140010019": 0
         },
         {
-          "201601002": 0
-        },
-        {
-          "201601003": 0
-        },
-        {
-          "201601004": 0
-        },
-        {
-          "201601006": 0
+          "S20140010002": 0
         }
       ]
     }
@@ -151,8 +142,9 @@ def TakeAttendence(request):
         known_face_names = data['studentlist']
         names = []
         attendence = {}
-        for image_name in os.listdir(PATH + '/KnownImages'):
-            image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name) # add '.jpg' after wards
+        #for image_name in os.listdir(PATH + '/KnownImages'):
+        for image_name in known_face_names:
+            image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name + '.jpg') # add '.jpg' after wards
             image_face_encoding = face_recognition.face_encodings(image)[0]
             known_face_encodings.append(image_face_encoding)
             names.append(image_name)

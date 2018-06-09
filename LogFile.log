@@ -1,3 +1,23 @@
 WARNING:django.request:Not Found: /favicon.ico
 WARNING:django.request:Not Found: /favicon.ico
 INFO:root:2018-06-09 06:17:14.732838	 JsonResponse of attendance sent back.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 146, in TakeAttendence
+    image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name + '.jpg') # add '.jpg' after wards
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/face_recognition/api.py", line 83, in load_image_file
+    im = PIL.Image.open(file)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/PIL/Image.py", line 2548, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: './AvailableSessions/102/ICS200/KnownImages/201601003.jpg.jpg'
+INFO:root:2018-06-09 06:26:42.658351	 JsonResponse of attendance sent back.
+INFO:root:2018-06-09 06:28:19.270227	 JsonResponse of attendance sent back.
+INFO:root:2018-06-09 06:30:07.091480	 JsonResponse of attendance sent back.
