@@ -171,6 +171,13 @@ def TakeAttendence(request):
 
         data['error'] = 'NO ERROR'
         data['status'] = 'SUCCESS'
+        del data["studentlist"]
+        data["studentlist"]=[]
+        for key in data1.keys():
+            p={}
+            p[key]=attendence[key]
+            data["studentlist"].append(p)
+        
         logging.info(str(datetime.datetime.now())+"\t JsonResponse of attendance sent back.")               #Logging success message that JSON response with student attendance has been sent.
     print(dummy)
     return JsonResponse(attendence)
