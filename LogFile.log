@@ -1,0 +1,3 @@
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:root:2018-06-09 06:17:14.732838	 JsonResponse of attendance sent back.

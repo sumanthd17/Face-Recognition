@@ -13,6 +13,8 @@ import json
 from faceRecognition.models import Session, Attendence
 import datetime
 from django.views.decorators.csrf import csrf_exempt
+import logging
+logging.basicConfig(filename='../LogFile.log', level=logging.DEBUG)
 
 # Create your views here.
 from faceRecognition.models import Session
@@ -62,8 +64,12 @@ def ActivateCamera(request, pk):
 @csrf_exempt
 def TakeAttendence(request):
     '''data = request.body
-    data = json.loads(str(data, 'utf-8'))
+    try:
+        data = json.loads(str(data, 'utf-8'))
+    except :
+        logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
     print(data)'''
+
     data =   {
       "classRoom": "1",
       "courseNumber": "CS231",
@@ -99,6 +105,7 @@ def TakeAttendence(request):
 
     room = data['classRoom']
     if not os.path.exists('./AvailableSessions/' + str(room)):
+        logging.error(str(datetime.datetime.now())+"\tClassroom not found and JSON data sent with error message.")  #logging error message if classroom number sent wrong
         data['error'] = 'path for pictures does not exist'
         data['status'] = 'error'
         # send response back
@@ -107,6 +114,7 @@ def TakeAttendence(request):
 
     courseID = data['courseNumber']
     if not os.path.exists('./AvailableSessions/' + str(room) + '/' + str(courseID)):
+        logging.error(str(datetime.datetime.now())+"\tCourse not registered for that classroom and JSON data sent with error message.") #logging data if course not registered in that specified room.
         data['error'] = 'path for classroom does not exist'
         data['status'] = 'error'
         # send response back
@@ -171,7 +179,7 @@ def TakeAttendence(request):
 
         data['error'] = 'NO ERROR'
         data['status'] = 'SUCCESS'
-
+        logging.info(str(datetime.datetime.now())+"\t JsonResponse of attendance sent back.")               #Logging success message that JSON response with student attendance has been sent.
     print(dummy)
     return JsonResponse(attendence)
 '''@csrf_exempt
@@ -252,6 +260,7 @@ def register(request):
             password =  userObj['password']
             if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
                 User.objects.create_user(username, email, password)
+                logging.info(str(datetime.datetime.now())+"\tNew user Registered.")                     #Logging info that a new user has been registered.
                 user = authenticate(username = username, password = password)
                 login(request, user)
                 return HttpResponseRedirect('/faceRecognition')
