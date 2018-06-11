@@ -56,3 +56,49 @@ Traceback (most recent call last):
   File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 139, in _get_response
     "returned None instead." % (callback.__module__, view_name)
 ValueError: The view faceRecognition.views.TakeAttendence didn't return an HttpResponse object. It returned None instead.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 149, in TakeAttendence
+    predictions = predict(full_file_path, model_path="trained_knn_model.clf")
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 88, in predict
+    with open(model_path, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'trained_knn_model.clf'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 149, in TakeAttendence
+    predictions = predict(full_file_path, model_path=PATH + "trained_knn_model.clf")
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 88, in predict
+    with open(model_path, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: './AvailableSessions/102/ICS200trained_knn_model.clf'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 139, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view faceRecognition.views.TakeAttendence didn't return an HttpResponse object. It returned None instead.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/utils/deprecation.py", line 97, in __call__
+    response = self.process_response(request, response)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/middleware/clickjacking.py", line 26, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'

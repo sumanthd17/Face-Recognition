@@ -125,10 +125,19 @@ def TakeAttendence(request):
       "error": "",
       "studentlist": [
         {
-          "S20140010019": 0
+          "DSC_0688": 0
         },
         {
-          "S20140010002": 0
+          "DSC_0626": 0
+        },
+        {
+          "DSC_0011": 0
+        },
+        {
+          "DSC_0847": 0
+        },
+        {
+          "DSC_0824": 0
         }
       ]
     }
@@ -142,120 +151,7 @@ def TakeAttendence(request):
     for image_file in os.listdir(PATH + '/Images'):
         full_file_path = os.path.join(PATH + '/Images', image_file)
 
-<<<<<<< HEAD
         print("Looking for faces in {}".format(image_file))
-=======
-    room = data['classRoom']
-    if not os.path.exists('./AvailableSessions/' + str(room)):
-        logging.error(str(datetime.datetime.now())+"\tClassroom not found and JSON data sent with error message.")  #logging error message if classroom number sent wrong
-        data['error'] = 'path for pictures does not exist'
-        data['status'] = 'error'
-        # send response back
-        data['error'] = 'PATH NOT FOUND'
-        data['status'] = 'ERROR OCCURED'
-
-    courseID = data['courseNumber']
-    if not os.path.exists('./AvailableSessions/' + str(room) + '/' + str(courseID)):
-        logging.error(str(datetime.datetime.now())+"\tCourse not registered for that classroom and JSON data sent with error message.") #logging data if course not registered in that specified room.
-        data['error'] = 'path for classroom does not exist'
-        data['status'] = 'error'
-        # send response back
-        data['error'] = 'PATH NOT FOUND'
-        data['status'] = 'ERROR OCCURED'
-
-    else:
-        import glob
-        import face_recognition
-
-        face_locations = []
-        face_encodings = []
-        PATH = './AvailableSessions/' + str(room) + '/' + str(courseID)
-        # encodings for the group photo
-        list_of_files = glob.glob(PATH + '/*.jpg')
-        latest_photo = max(list_of_files, key=os.path.getctime)
-        image = face_recognition.load_image_file(str(latest_photo))
-        face_locations = face_recognition.face_locations(image)
-        face_encodings = face_recognition.face_encodings(image, face_locations)
-        # saving extracted images to faces_from_Image folder
-        counter = 1
-        for face_location in face_locations:
-            top, right, bottom, left = face_location
-            face_image = image[top:bottom, left:right]
-            pil_image = Image.fromarray(face_image)
-            req_path = PATH + '/faces_from_Image/'
-            if not os.path.exists(req_path):
-                os.mkdir(req_path)
-            pil_image.save(req_path + '/' + str(counter) + '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
-            counter += 1
-
-        # encodings for the id card photos
-        known_face_encodings = []
-        known_face_names = data['studentlist']
-        names = []
-        attendence = {}
-        #for image_name in os.listdir(PATH + '/KnownImages'):
-        for image_name in known_face_names:
-            image = face_recognition.load_image_file(PATH + '/KnownImages/' + image_name + '.jpg') # add '.jpg' after wards
-            image_face_encoding = face_recognition.face_encodings(image)[0]
-            known_face_encodings.append(image_face_encoding)
-            names.append(image_name)
-            attendence[image_name] = 0
-            print(image_name)
-
-        # comparing faces
-        dummy = []
-        counter = 0
-        for known_face_encoding in known_face_encodings:
-            matches = face_recognition.compare_faces(face_encodings, known_face_encoding,tolerance = 0.45)
-            #print(matches)
-            ''''if True in matches:
-                first_match_index = matches.index(True)
-                name = names[first_match_index]
-                data['studentlist'][name] = 1
-                attendence[name] = 1'''
-            if True in matches:
-                attendence[names[counter]] = 1
-            else:
-                attendence[names[counter]] = 0
-            counter += 1
-
-
-        data['error'] = 'NO ERROR'
-        data['status'] = 'SUCCESS'
-        del data["studentlist"]
-        data["studentlist"]=[]
-        for key in data1.keys():
-            p={}
-            p[key]=attendence[key]
-            data["studentlist"].append(p)
-        
-        logging.info(str(datetime.datetime.now())+"\t JsonResponse of attendance sent back.")               #Logging success message that JSON response with student attendance has been sent.
-    print(dummy)
-    return JsonResponse(attendence)
-'''@csrf_exempt
-def TakeAttendence(request, pk):
-    import json
-    import requests
-    from django.http import StreamingHttpResponse
-    url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
-    if request.method == 'POST':
-        #return HttpResponse("qwe")
-        students_attendence_data = requests.get(url).json()
-        #return JsonResponse(students_attendence_data)
-
-    import face_recognition
-    known_face_encodings = []
-    known_face_names = []
-    pk = str(pk)    # pk is the primary key fro the session
-    # knownImages is the ID card photos folder
-    for image_name in students_attendence_data:
-        image = face_recognition.load_image_file('./KnownImages/' + pk + '/' + image_name + '.jpg')              #loading each image from the folder
-        image_face_encoding = face_recognition.face_encodings(image)[0]                                 #find the face encoding for each known photo
-        known_face_encodings.append(image_face_encoding)                                                # saving it in known_face_encodings list
-        known_face_names.append(image_name)                                                             # here known_face_name is the image name AKA roll number
-        students_attendence_data[image_name] = 0                                                        # defining the status of students (initial state all are assumed absent)
-        #print(known_face_names)
->>>>>>> 172e6d0845188c842ec185c8279c11dd78b77802
 
         # Find all people in the image using a trained classifier model
         # Note: You can pass in either a classifier file name or a classifier model instance
@@ -265,9 +161,13 @@ def TakeAttendence(request, pk):
         # Print results on the console
         for name, (top, right, bottom, left) in predictions:
             print("- Found {} at ({}, {})".format(name, left, top))
+            if name in data['studentlist']:
+                print('qwe')
+                data['studentlist'][name] = 1
 
         print(predictions)
-    return HttpResponse('Attendence done')
+    return JsonResponse(data)
+
 
 def register(request):
     if request.method == 'POST':
