@@ -185,3 +185,12 @@ def TakeAttendence(request):
     print(dummy)
     return JsonResponse(attendence)
                                           # displaying the data on the web page
+
+
+#########################################
+    # sending the list of students for checking attendence
+    '''import requests
+    url = "http://127.0.0.1:8000/faceRecognition/session/" + pk + "/ActivateCamera/"
+    data = {"201601001": 0, "201601002": 0,"201601003": 0,"201601006": 0}
+    header = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    r = requests.post(url, data=json.dumps(data), headers=header)'''
