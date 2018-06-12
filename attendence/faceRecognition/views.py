@@ -166,41 +166,74 @@ def predict(X_img_path, knn_clf=None, model_path=None, distance_threshold=0.475)
     # Predict classes and remove classifications that aren't within the threshold
     return [(pred, loc) if rec else ("unknown", loc) for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_face_locations, are_matches)]
 
+def show_prediction_labels_on_image(img_path, predictions,data):
+    """
+    Shows the face recognition results visually.
+    :param img_path: path to image to be recognized
+    :param predictions: results of the predict function
+    :return:
+    """
+    PATH = './AvailableSessions/' + str(data['classRoom']) + '/' + str(data['courseNumber']+'/'+'FramePictures')
+    pil_image = Image.open(img_path).convert("RGB")
+    draw = ImageDraw.Draw(pil_image)
+
+    for name, (top, right, bottom, left) in predictions:
+        # Draw a box around the face using the Pillow module
+        draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+        # There's a bug in Pillow where it blows up with non-UTF-8 text
+        # when using the default bitmap font
+        name = name.encode("UTF-8")
+
+        # Draw a label with a name below the face
+        text_width, text_height = draw.textsize(name)
+        draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+        draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+
+    # Remove the drawing library from memory as per the Pillow docs
+    del draw
+
+    # Display the resulting image
+    pil_image.show()
+    #os.mkdir('FramePictures')
+    if not os.path.exists(PATH):
+        os.mkdir(PATH)
+    pil_image.save(PATH + '/' + 'Frame1'+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
 def TakeAttendence(request):
-    data = request.body
-    try:
-        data = json.loads(str(data, 'utf-8'))
-    except :
-        logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
-    print(data)
-    # data =   {
-    #   "classRoom": "102",
-    #   "courseNumber": "ICS200",
-    #   "attendanceDate": "08/06/2018",
-    #   "fromPeriod": "07:00",
-    #   "toPeriod": "07:30",
-    #   "status": "",
-    #   "error": "",
-    #   "studentlist": [
-    #     {
-    #       "DSC_0688": 0
-    #     },
-    #     {
-    #       "DSC_0626": 0
-    #     },
-    #     {
-    #       "DSC_0011": 0
-    #     },
-    #     {
-    #       "DSC_0847": 0
-    #     },
-    #     {
-    #       "DSC_0824": 0
-    #     }
-    #   ]
-    # }
+    # data = request.body
+    # try:
+    #     data = json.loads(str(data, 'utf-8'))
+    # except :
+    #     logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
+    # print(data)
+    data =   {
+      "classRoom": "102",
+      "courseNumber": "ICS200",
+      "attendanceDate": "08/06/2018",
+      "fromPeriod": "07:00",
+      "toPeriod": "07:30",
+      "status": "",
+      "error": "",
+      "studentlist": [
+        {
+          "DSC_0688": 0
+        },
+        {
+          "DSC_0626": 0
+        },
+        {
+          "DSC_0011": 0
+        },
+        {
+          "DSC_0847": 0
+        },
+        {
+          "DSC_0824": 0
+        }
+      ]
+    }
     data1={}
     for i in range(0,len(data["studentlist"])):
       for key in data["studentlist"][i].keys():
@@ -227,13 +260,17 @@ def TakeAttendence(request):
             print("- Found {} at ({}, {})".format(name, left, top))
             if name in data['studentlist']:
                 data['studentlist'][name] = 1
-
+        show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data)
         print(predictions)
         data["studentlist"]=[]
         for key in data1.keys():
           p={}
           p[key]=data1[key]
           data["studentlist"].append(p)
+        data["imagepaths"]=[]
+        p={}
+        p["Frame1"]='Frame1.jpg'
+        data["imagepaths"].append(p)
     return JsonResponse(data)
 
 
