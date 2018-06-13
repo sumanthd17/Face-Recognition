@@ -166,7 +166,7 @@ def predict(X_img_path, knn_clf=None, model_path=None, distance_threshold=0.475)
     # Predict classes and remove classifications that aren't within the threshold
     return [(pred, loc) if rec else ("unknown", loc) for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_face_locations, are_matches)]
 
-def show_prediction_labels_on_image(img_path, predictions,data):
+def show_prediction_labels_on_image(img_path, predictions,data,counter):
     """
     Shows the face recognition results visually.
     :param img_path: path to image to be recognized
@@ -194,11 +194,12 @@ def show_prediction_labels_on_image(img_path, predictions,data):
     del draw
 
     # Display the resulting image
-    pil_image.show()
+    #pil_image.show()
     #os.mkdir('FramePictures')
     if not os.path.exists(PATH):
         os.mkdir(PATH)
-    pil_image.save(PATH + '/' + 'Frame1'+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    print(os.path.abspath(PATH))
+    pil_image.save(PATH + '/' + 'Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
 def TakeAttendence(request):
@@ -240,7 +241,9 @@ def TakeAttendence(request):
        data1[key]=0
 
     data.update(studentlist=data1)
+    print(data["studentlist"])
     PATH = './AvailableSessions/' + str(data['classRoom']) + '/' + str(data['courseNumber'])
+    counter=1
     for image_file in os.listdir(PATH + '/Images'):
         full_file_path = os.path.join(PATH + '/Images', image_file)
         if not os.path.exists(PATH + '/trained_knn_model.clf'):
@@ -256,21 +259,28 @@ def TakeAttendence(request):
 
 
         # Print results on the console
+        
         for name, (top, right, bottom, left) in predictions:
             print("- Found {} at ({}, {})".format(name, left, top))
             if name in data['studentlist']:
-                data['studentlist'][name] = 1
-        show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data)
+                data1[name]+=1
+                print(data['studentlist'][name])
+        show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data,counter)
         print(predictions)
-        data["studentlist"]=[]
-        for key in data1.keys():
-          p={}
-          p[key]=data1[key]
-          data["studentlist"].append(p)
-        data["imagepaths"]=[]
-        p={}
-        p["Frame1"]='Frame1.jpg'
-        data["imagepaths"].append(p)
+        counter+=1
+    data["studentlist"]=[]
+    for key in data1.keys():
+      p={}
+      p[key]=data1[key]
+      data["studentlist"].append(p)
+    data["imagepaths"]=[]
+    p={}
+    p["Frame1"]='Frame1.jpg'
+    p["Frame2"]='Frame2.jpg'
+    p["Frame3"]='Frame3jpg'
+    p["Frame4"]='Frame4.jpg'
+    p["Frame5"]='Frame5.jpg'
+    data["imagepaths"].append(p)        
     return JsonResponse(data)
 
 
