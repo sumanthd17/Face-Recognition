@@ -117,3 +117,987 @@ Traceback (most recent call last):
   File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 148, in predict
     with open(model_path, 'rb') as f:
 FileNotFoundError: [Errno 2] No such file or directory: './AvailableSessions/102/ICS200/trained_knn_model.clf'
+WARNING:django.request:Not Found: /favicon.ico
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 252, in TakeAttendence
+    if count%480 == 0 :
+UnboundLocalError: local variable 'count' referenced before assignment
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 270, in TakeAttendence
+    predictions = predict(full_file_path, model_path=PATH + "/trained_knn_model.clf")
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 152, in predict
+    X_img = face_recognition.load_image_file(X_img_path)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/face_recognition/api.py", line 83, in load_image_file
+    im = PIL.Image.open(file)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/PIL/Image.py", line 2590, in open
+    % (filename if filename else fp))
+OSError: cannot identify image file './AvailableSessions/102/ICS200/Images/frame0.jpg'
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 271, in TakeAttendence
+    predictions = predict(full_file_path, model_path=PATH + "/trained_knn_model.clf")
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 152, in predict
+    X_img = face_recognition.load_image_file(X_img_path)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/face_recognition/api.py", line 83, in load_image_file
+    im = PIL.Image.open(file)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/PIL/Image.py", line 2590, in open
+    % (filename if filename else fp))
+OSError: cannot identify image file './AvailableSessions/102/ICS200/Images/frame0.jpg'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 257, in TakeAttendence
+    counter += 1
+UnboundLocalError: local variable 'counter' referenced before assignment
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 248, in TakeAttendence
+    div = ceil(length / 5)
+NameError: name 'ceil' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 248, in TakeAttendence
+    div = floor(length / 5)
+NameError: name 'floor' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    config = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    config = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    config = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    config = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 248, in TakeAttendence
+    config.read('config.ini')
+  File "/usr/lib/python3.6/configparser.py", line 697, in read
+    self._read(fp, filename)
+  File "/usr/lib/python3.6/configparser.py", line 1080, in _read
+    raise MissingSectionHeaderError(fpname, lineno, line)
+configparser.MissingSectionHeaderError: File contains no section headers.
+file: 'config.ini', line: 1
+'// config.ini\n'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 260, in TakeAttendence
+ZeroDivisionError: integer division or modulo by zero
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    dummy = json.loads(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 348, in loads
+    'not {!r}'.format(s.__class__.__name__))
+TypeError: the JSON object must be str, bytes or bytearray, not 'TextIOWrapper'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    dummy = json.loads(f.read())
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    dummy = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    dummy = json.loads(f.decode("utf-8"))
+AttributeError: '_io.TextIOWrapper' object has no attribute 'decode'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    dummy = json.loads(f.read().decode("utf-8"))
+AttributeError: 'str' object has no attribute 'decode'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in TakeAttendence
+    dummy = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    dummy = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    dummy = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    dummy = json.loads(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 348, in loads
+    'not {!r}'.format(s.__class__.__name__))
+TypeError: the JSON object must be str, bytes or bytearray, not 'TextIOWrapper'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    dummy = json.load(f)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    dummy = json.load(f.read())
+  File "/usr/lib/python3.6/json/__init__.py", line 296, in load
+    return loads(fp.read(),
+AttributeError: 'str' object has no attribute 'read'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 244, in TakeAttendence
+    config = json.loads(open('config.json').read())
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 244, in TakeAttendence
+    config = json.loads(open('config.json').read())
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 244, in TakeAttendence
+    config = json.loads(open('config.json').read())
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    d = json.load(json_data)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 247, in TakeAttendence
+    d = json.load(json_data)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 250, in TakeAttendence
+    PATH = config['PATHS']['Sessions'] + str(data['classRoom']) + '/' + str(data['courseNumber'])
+NameError: name 'config' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 250, in TakeAttendence
+    PATH = config['PATHS']['Sessions'] + str(data['classRoom']) + '/' + str(data['courseNumber'])
+TypeError: string indices must be integers
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 250, in TakeAttendence
+    PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])
+TypeError: string indices must be integers
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 261, in TakeAttendence
+    if count%div == 0 :
+ZeroDivisionError: integer division or modulo by zero
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 267, in TakeAttendence
+    for image_file in os.listdir(PATH + '/Images'):
+FileNotFoundError: [Errno 2] No such file or directory: './AvailableSessions102/ICS200/Images'
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 249, in TakeAttendence
+    config = json.load(json_data)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 355, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Invalid \escape: line 6 column 16 (char 85)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 290, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 293, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 258, in TakeAttendence
+    obj2 = AES.new(config['SECURITY']['KEY'], AES.MODE_CFB, config['SECURITY']['CODE'])
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/Crypto/Cipher/AES.py", line 95, in new
+    return AESCipher(key, *args, **kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/Crypto/Cipher/AES.py", line 59, in __init__
+    blockalgo.BlockAlgo.__init__(self, _AES, key, *args, **kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/Crypto/Cipher/blockalgo.py", line 141, in __init__
+    self._cipher = factory.new(key, *args, **kwargs)
+ValueError: IV must be 16 bytes long
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 294, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 294, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 249, in TakeAttendence
+    config = json.load(json_data)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 6 column 13 (char 82)
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 294, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 260, in TakeAttendence
+    if str(boj2.decrypt(cipher) == 'Attendence'):
+NameError: name 'boj2' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 294, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 313, in TakeAttendence
+    return JsonResponse(data)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/http/response.py", line 509, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/serializers/json.py", line 104, in default
+    return super().default(o)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 313, in TakeAttendence
+    return JsonResponse(data)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/http/response.py", line 509, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/serializers/json.py", line 104, in default
+    return super().default(o)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 258, in TakeAttendence
+    print(str(obj2.decrypt(cipher)).decode('utf-8'))
+AttributeError: 'str' object has no attribute 'decode'
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 260, in TakeAttendence
+    if obj2.decrypt(cipher).decode('utf-8') == 'Attendence':
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb1 in position 0: invalid start byte
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 295, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 259, in TakeAttendence
+    print(req)
+NameError: name 'req' is not defined
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 313, in TakeAttendence
+    return JsonResponse(data)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/http/response.py", line 509, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/serializers/json.py", line 104, in default
+    return super().default(o)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 258, in TakeAttendence
+    DECODED = obj2.decrypt(cipher).decode('utf-8')
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x88 in position 2: invalid start byte
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 259, in TakeAttendence
+    DECODED = obj2.decrypt(cipher).decode('utf-8')
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x88 in position 2: invalid start byte
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 261, in TakeAttendence
+    DECODED = obj2.decrypt(cipher).decode('utf-8')
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x88 in position 2: invalid start byte
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 262, in TakeAttendence
+    DECODED = obj2.decrypt(cipher).decode('utf-8')
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x88 in position 2: invalid start byte
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 314, in TakeAttendence
+    return JsonResponse(data)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/http/response.py", line 509, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/serializers/json.py", line 104, in default
+    return super().default(o)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 262, in TakeAttendence
+    DECODED = obj2.decrypt(cipher).decode('utf-8')
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x88 in position 2: invalid start byte
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 298, in TakeAttendence
+    for name, (top, right, bottom, left) in predictions:
+NameError: name 'predictions' is not defined
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 300, in TakeAttendence
+    print(data['studentlist'][name])
+TypeError: list indices must be integers or slices, not numpy.str_
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216

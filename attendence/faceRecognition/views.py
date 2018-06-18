@@ -232,36 +232,78 @@ def TakeAttendence(request):
         {
           "DSC_0824": 0
         }
-      ]
+      ],
+      "SECURITY_KEY": "QWERTYUIOPASDFGH",
+      "SECURITY_CODE": "ZXCVBNMASDFGHJKL",
+      #"CIPHER": b':\xdd\n\x8b\xb5\xdf\xdfb\x07\xd8'
+      "CIPHER": ':Ý\n\x8bµßßb\x07Ø',
+      "MESSAGE": "Attendence"
     }
     data1={}
     for i in range(0,len(data["studentlist"])):
       for key in data["studentlist"][i].keys():
        data1[key]=0
 
-    data.update(studentlist=data1)
-    PATH = './AvailableSessions/' + str(data['classRoom']) + '/' + str(data['courseNumber'])
-    for image_file in os.listdir(PATH + '/Images'):
-        full_file_path = os.path.join(PATH + '/Images', image_file)
-        if not os.path.exists(PATH + '/trained_knn_model.clf'):
-            print("Training KNN classifier...")
-            classifier = train(PATH + '/KnownImages', model_save_path=PATH + "/trained_knn_model.clf", n_neighbors=2)
-            print("Training complete!")
+    import cv2
+    import math
+    import json
 
-        print("Looking for faces in {}".format(image_file))
+    with open('config.json') as json_data:
+        config = json.load(json_data)
+        print(config)
 
-        # Find all people in the image using a trained classifier model
-        # Note: You can pass in either a classifier file name or a classifier model instance
-        predictions = predict(full_file_path, model_path=PATH + "/trained_knn_model.clf")
+    from Crypto.Cipher import AES
+    obj = AES.new(data['SECURITY_KEY'], AES.MODE_CFB, data['SECURITY_CODE'])
+    message = 'Attendence'
+    cipher = data['CIPHER']
+    cipher = cipher.encode('ISO-8859-1')
+    print(cipher)
+    obj2 = AES.new(config['SECURITY']['KEY'], AES.MODE_CFB, config['SECURITY']['CODE'])
+    DECODED = obj2.decrypt(cipher).decode('utf-8')
+    print(DECODED)
+
+    if DECODED == config['SECURITY']['MESSAGE']:
+        PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])
+        vidcap = cv2.VideoCapture(PATH + '/AttendenceVideo.mp4')
+        success,image = vidcap.read()
+        success = True
+        length = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
+        div = math.ceil(length / 5)
+        count = 0
+
+        while success:
+            success,image = vidcap.read()
+
+            if count%div == 0 :
+                 cv2.imwrite(PATH + '/Images/frame%d.jpg'%count,image)
+            count+=1
 
 
-        # Print results on the console
-        for name, (top, right, bottom, left) in predictions:
-            print("- Found {} at ({}, {})".format(name, left, top))
-            if name in data['studentlist']:
-                data['studentlist'][name] = 1
-        show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data)
-        print(predictions)
+        data.update(studentlist=data1)
+        for image_file in os.listdir(PATH + '/Images'):
+            full_file_path = os.path.join(PATH + '/Images', image_file)
+            if not os.path.exists(PATH + '/trained_knn_model.clf'):
+                print("Training KNN classifier...")
+                classifier = train(PATH + '/KnownImages', model_save_path=PATH + "/trained_knn_model.clf", n_neighbors=2)
+                print("Training complete!")
+
+            print("Looking for faces in {}".format(image_file))
+
+            # Find all people in the image using a trained classifier model
+            # Note: You can pass in either a classifier file name or a classifier model instance
+            predictions = predict(full_file_path, model_path=PATH + "/trained_knn_model.clf")
+
+            print(data)
+            # Print results on the console
+            for name, (top, right, bottom, left) in predictions:
+                print("- Found {} at ({}, {})".format(name, left, top))
+                if name in data['studentlist']:
+                    print('qwe')
+                    data1[name] += 1
+                    print(data['studentlist'][name])
+            show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data)
+            print(predictions)
+            print(data)
         data["studentlist"]=[]
         for key in data1.keys():
           p={}
@@ -270,8 +312,16 @@ def TakeAttendence(request):
         data["imagepaths"]=[]
         p={}
         p["Frame1"]='Frame1.jpg'
+        p["Frame2"]='Frame2.jpg'
+        p["Frame3"]='Frame3jpg'
+        p["Frame4"]='Frame4.jpg'
+        p["Frame5"]='Frame5.jpg'
         data["imagepaths"].append(p)
-    return JsonResponse(data)
+        return JsonResponse(data)
+    else:
+        data['status'] = 'error occured during validation'
+        data['error'] = 'UNAUTHORISED ACCESS'
+        return JsonResponse(data)
 
 
 def register(request):

@@ -1,0 +1,10 @@
+{
+	"PATHS": {
+		"Sessions": "./AvailableSessions/"
+	},
+	"SECURITY": {
+		"KEY": "QWERTYUIOPASDFGH",
+		"CODE": "ZXCVBNMASDFGHJKL",
+		"MESSAGE": "Attendence"
+	}
+}
