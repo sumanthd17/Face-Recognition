@@ -1,0 +1,17 @@
+<data>
+	<classRoom>102</classRoom>
+	<courseNumber>ICS200</courseNumber>
+	<attendanceDate>20/10/1990</attendanceDate>
+	<fromPeriod>7:00</fromPeriod>
+	<toPeriod>7:30</toPeriod>
+	<error> </error>
+	<status> </status>
+	<studentlist rollNumber="201611131">0</studentlist>
+	<studentlist rollNumber="201611125">0</studentlist>
+	<studentlist rollNumber="201611122">0</studentlist>
+	<studentlist rollNumber="201611120">0</studentlist>
+	<SECURITY_KEY>QWERTYUIOPASDFGH</SECURITY_KEY>
+  <SECURITY_CODE>ZXCVBNMASDFGHJKL</SECURITY_CODE>
+  <CIPHER>:Ý\n\x8bµßßb\x07Ø</CIPHER>
+	<MESSAGE>Attendence</MESSAGE>
+</data>

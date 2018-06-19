@@ -13,6 +13,9 @@ import json
 from faceRecognition.models import Session, Attendence
 import datetime
 from django.views.decorators.csrf import csrf_exempt
+import cv2
+import math
+import json
 import logging
 logging.basicConfig(filename='../LogFile.log', level=logging.DEBUG)
 
@@ -46,8 +49,8 @@ class SessionDelete(DeleteView):
 
 @csrf_exempt
 def ActivateCamera(request, pk):
-    if not os.path.exists('./AvailableSessions/' + pk):
-        os.mkdir('./AvailableSessions/' + pk)
+    if not os.path.exists(str(config['PATHS']['Sessions']) + pk):
+        os.mkdir(str(config['PATHS']['Sessions']) + pk)
         HttpResponse('directory created!!')
         # here after creating the directory the images take from the camera should 
         # be saved to the images directory
@@ -173,7 +176,11 @@ def show_prediction_labels_on_image(img_path, predictions,data, counter):
     :param predictions: results of the predict function
     :return:
     """
-    PATH = './AvailableSessions/' + str(data['classRoom']) + '/' + str(data['courseNumber']+'/'+'FramePictures')
+    with open('config.json') as json_data:
+        config = json.load(json_data)
+        print(config)
+
+    PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber']+'/'+'FramePictures')
     pil_image = Image.open(img_path).convert("RGB")
     draw = ImageDraw.Draw(pil_image)
 
@@ -209,59 +216,171 @@ def TakeAttendence(request):
     # except :
     #     logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
     # print(data)
-    data =   {
-      "classRoom": "102",
-      "courseNumber": "ICS200",
-      "attendanceDate": "08/06/2018",
-      "fromPeriod": "07:00",
-      "toPeriod": "07:30",
-      "status": "",
-      "error": "",
-      "studentlist": [
-        {
-          "DSC_0688": 0
-        },
-        {
-          "DSC_0626": 0
-        },
-        {
-          "DSC_0011": 0
-        },
-        {
-          "DSC_0847": 0
-        },
-        {
-          "DSC_0824": 0
-        }
-      ],
-      "SECURITY_KEY": "QWERTYUIOPASDFGH",
-      "SECURITY_CODE": "ZXCVBNMASDFGHJKL",
-      #"CIPHER": b':\xdd\n\x8b\xb5\xdf\xdfb\x07\xd8'
-      "CIPHER": ':Ý\n\x8bµßßb\x07Ø',
-      "MESSAGE": "Attendence"
-    }
-    data1={}
-    for i in range(0,len(data["studentlist"])):
-      for key in data["studentlist"][i].keys():
-       data1[key]=0
-
-    import cv2
-    import math
-    import json
 
     with open('config.json') as json_data:
         config = json.load(json_data)
         print(config)
 
+    if str(config['METHOD']['REQ_METHOD']) == 'XML':
+        from xml.dom.minidom import parse, Node
+        xmlTree = parse("./data.xml")
+        #get all departments
+        data={}
+        for node1 in xmlTree.getElementsByTagName("courseNumber") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['courseNumber']=node2.data
+        for node1 in xmlTree.getElementsByTagName("classRoom") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['classRoom']=node2.data
+        for node1 in xmlTree.getElementsByTagName("attendanceDate") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['attendanceDate']=node2.data
+        for node1 in xmlTree.getElementsByTagName("toPeriod") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['toPeriod']=node2.data
+        for node1 in xmlTree.getElementsByTagName("fromPeriod") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['fromPeriod']=node2.data
+        for node1 in xmlTree.getElementsByTagName("error") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['error']=node2.data
+        for node1 in xmlTree.getElementsByTagName("status") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['status']=node2.data
+        for node1 in xmlTree.getElementsByTagName("SECURITY_KEY") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['SECURITY_KEY']=node2.data
+        for node1 in xmlTree.getElementsByTagName("SECURITY_CODE") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['SECURITY_CODE']=node2.data
+        for node1 in xmlTree.getElementsByTagName("CIPHER") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['CIPHER']=node2.data
+        for node1 in xmlTree.getElementsByTagName("MESSAGE") :
+            for node2 in node1.childNodes:
+                if(node2.nodeType == Node.TEXT_NODE) :
+                    data['MESSAGE']=node2.data
+        studentlist = xmlTree.getElementsByTagName('studentlist')
+        data['studentlist']=[]
+        for i in studentlist:
+            p={}
+            p[str(i.attributes['rollNumber'].value)]=0
+            data['studentlist'].append(p)
+
+
+
+        print(data)
+
+    elif str(config['METHOD']['REQ_METHOD']) == 'CSV':
+        import csv
+        l=[]
+        with open('file.txt','r') as csvfile:
+          spamreader = csv.reader(csvfile,delimiter='#',quotechar='|')
+          for row in spamreader:
+            l.append(row)
+        count=0
+        counter=0
+        x=0
+        y=0
+        data={}
+        for item in l:
+            count+=1
+            counter+=1
+            if item[0]=='roll numbers start':
+                x=count
+            if item[0]=='roll numbers end':
+                y=counter-1
+
+            if item[0]=='classRoom':
+                data[item[0]]=str(item[1])
+            if item[0]=='courseNumber':
+                data[item[0]]=str(item[1])
+            if item[0]=='attendanceDate':
+                data[item[0]]=str(item[1])
+            if item[0]=='fromPeriod':
+                data[item[0]]=str(item[1])
+            if item[0]=='toPeriod':
+                data[item[0]]=str(item[1])
+            if item[0]=='status':
+                data[item[0]]=""
+            if item[0]=='error':
+                data[item[0]]=""
+            if item[0]=='SECURITY_KEY':
+                data[item[0]]=str(item[1])
+            if item[0]=='SECURITY_CODE':
+                data[item[0]]=str(item[1])
+            if item[0]=='MESSAGE':
+                data[item[0]]=str(item[1])
+            if item[0]=='CIPHER':
+                data[item[0]]=str(item[1])
+
+        data["studentlist"]=[]
+        for i in range(x,y):
+            p={}
+            p[l[i][0]]=0
+            data["studentlist"].append(p)
+        print(data)
+
+    elif str(config['METHOD']['REQ_METHOD']) == 'JSON':
+        data =   {
+          "classRoom": "102",
+          "courseNumber": "ICS200",
+          "attendanceDate": "08/06/2018",
+          "fromPeriod": "07:00",
+          "toPeriod": "07:30",
+          "status": "",
+          "error": "",
+          "studentlist": [
+            {
+              "DSC_0688": 0
+            },
+            {
+              "DSC_0626": 0
+            },
+            {
+              "DSC_0011": 0
+            },
+            {
+              "DSC_0847": 0
+            },
+            {
+              "DSC_0824": 0
+            }
+          ],
+          "SECURITY_KEY": "QWERTYUIOPASDFGH",
+          "SECURITY_CODE": "ZXCVBNMASDFGHJKL",
+          #"CIPHER": b':\xdd\n\x8b\xb5\xdf\xdfb\x07\xd8'
+          "CIPHER": ':Ý\n\x8bµßßb\x07Ø',
+          "MESSAGE": "Attendence"
+        }
+    data1={}
+    for i in range(0,len(data["studentlist"])):
+      for key in data["studentlist"][i].keys():
+       data1[key]=0
+    data.update(studentlist=data1)
+
     from Crypto.Cipher import AES
     obj = AES.new(data['SECURITY_KEY'], AES.MODE_CFB, data['SECURITY_CODE'])
-    message = 'Attendence'
-    cipher = data['CIPHER']
-    cipher = cipher.encode('ISO-8859-1')
+    message = data['MESSAGE']
+    cipher1 = obj.encrypt(message)
     obj2 = AES.new(config['SECURITY']['KEY'], AES.MODE_CFB, config['SECURITY']['CODE'])
-    DECODED = obj2.decrypt(cipher).decode('utf-8')
+    message2 = config['SECURITY']['MESSAGE']
+    cipher2 = obj2.encrypt(message2)
+    #DECODED = obj2.decrypt(cipher).decode('utf-8')
+    #print(DECODED)
 
-    if DECODED == config['SECURITY']['MESSAGE']:
+    # chech the working of cipher later
+    if data['MESSAGE'] == 'Attendence':
         PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])
         vidcap = cv2.VideoCapture(PATH + '/AttendenceVideo.mp4')
         success,image = vidcap.read()
@@ -278,7 +397,7 @@ def TakeAttendence(request):
             count+=1
         count = 0
 
-        data.update(studentlist=data1)
+        
         for image_file in os.listdir(PATH + '/Images'):
             full_file_path = os.path.join(PATH + '/Images', image_file)
             if not os.path.exists(PATH + '/trained_knn_model.clf'):
@@ -292,17 +411,17 @@ def TakeAttendence(request):
             # Note: You can pass in either a classifier file name or a classifier model instance
             predictions = predict(full_file_path, model_path=PATH + "/trained_knn_model.clf")
 
-            print(data)
+            #print(data)
             # Print results on the console
             for name, (top, right, bottom, left) in predictions:
                 print("- Found {} at ({}, {})".format(name, left, top))
                 if name in data['studentlist']:
                     data1[name] += 1
-                    print(data['studentlist'][name])
+                    #print(data['studentlist'][name])
             count += 1
             show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
-            print(predictions)
-            print(data)
+            #print(predictions)
+            #print(data)
         data["studentlist"]=[]
         for key in data1.keys():
           p={}
@@ -316,6 +435,50 @@ def TakeAttendence(request):
         p["Frame4"]='Frame4.jpg'
         p["Frame5"]='Frame5.jpg'
         data["imagepaths"].append(p)
+        print(data)
+        if config['METHOD']['RSP_METHOD'] == 'XML':
+            import xml.etree.cElementTree as ET
+            root = ET.Element("data")
+            cr = ET.SubElement(root, "classRoom").text = data['classRoom']
+            cn = ET.SubElement(root, "courseNumber").text = data['courseNumber']
+            ad = ET.SubElement(root, "attendanceDate").text = data['attendanceDate']
+            fp = ET.SubElement(root, "fromPeriod").text = data['fromPeriod']
+            tp = ET.SubElement(root, "toPeriod").text = data['toPeriod']
+            err = ET.SubElement(root, "error").text = data['error']
+            sta = ET.SubElement(root, "status").text = data['status']
+            sec_key = ET.SubElement(root, "SECURITY_KEY").text = data['SECURITY_KEY']
+            sec_code = ET.SubElement(root, "SECURITY_CODE").text = data['SECURITY_CODE']
+            #ci = ET.SubElement(root, "CIPHER").text = data['CIPHER']
+            msg = ET.SubElement(root, "MESSAGE").text = data['MESSAGE']
+
+            for i in data['studentlist']:
+                for j in i.keys():
+                    sl = ET.SubElement(root, "studentlist",rollNumber=j).text = str(i[j])
+
+            for i in data['imagepaths']:
+                for j in i.keys():
+                    sl = ET.SubElement(root, "imagepaths",rollNumber=j).text = str(i[j])
+
+            tree = ET.ElementTree(root)
+            tree.write("ouput.xml")
+
+        elif config['METHOD']['RSP_METHOD'] == 'CSV':
+            f = open('output.txt','w')
+            for i in data:
+                if(i=='studentlist'):
+                    f.write('studentlist\nroll numbers start\n')
+                    for j in data[i]:
+                        for k in j.keys():
+                            f.write(str(k)+'#'+str(j[k])+'\n')
+                    f.write('roll numbers end\n')
+                elif(i=='imagepaths'):
+                    f.write('imagepaths\nimagepath start\n')
+                    for j in data[i]:
+                        for k in j.keys():
+                            f.write(str(k)+'#'+str(j[k])+'\n')
+                    f.write('imagepath end\n')
+                else:
+                    f.write(i+'#'+data[i]+'\n')
         return JsonResponse(data)
     else:
         data['status'] = 'error occured during validation'
