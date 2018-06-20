@@ -210,22 +210,21 @@ def show_prediction_labels_on_image(img_path, predictions,data, counter):
 
 @csrf_exempt
 def TakeAttendence(request):
-    # data = request.body
-    # try:
-    #     data = json.loads(str(data, 'utf-8'))
-    # except :
-    #     logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
-    # print(data)
 
     with open('config.json') as json_data:
         config = json.load(json_data)
         print(config)
 
     if str(config['METHOD']['REQ_METHOD']) == 'XML':
-        '''data = request.body
-        data = data.decode('utf-8')
-        with open('./data.xml', 'w') as file:
-            file.write(data)'''
+        # try:
+        #     data = request.body
+        # except:
+        #     logging.error(str(datetime.datetime.now())+"\tXML Data not received in correct format.")   #Logging Error message if data not received in correct format.
+        # logging.info(str(datetime.datetime.now())+"\tXML Data received in correct format.")   #Logging message that data received in correct format.
+            
+        # data = data.decode('utf-8')
+        # with open('./data.xml', 'w') as file:
+        #     file.write(data)
 
         from xml.dom.minidom import parse, Node
         xmlTree = parse("./data.xml")
@@ -287,10 +286,14 @@ def TakeAttendence(request):
         print(data)
 
     elif str(config['METHOD']['REQ_METHOD']) == 'CSV':
-        '''data = request.body
-        data = data.decode('utf-8')
-        with open('file.txt', 'w') as file:
-            file.write(data)'''
+        # data = request.body
+        # try:
+        #     data = data.decode('utf-8')
+        # except:
+        #     logging.error(str(datetime.datetime.now())+"\tCSV Data not received in correct format.")   #Logging Error message if data not received in correct format.
+        # logging.info(str(datetime.datetime.now())+"\tCSV Data received in correct format.")   #Logging message that data received in correct format.
+        # with open('file.txt', 'w') as file:
+        #     file.write(data)
 
         import csv
         l=[]
@@ -342,6 +345,14 @@ def TakeAttendence(request):
         print(data)
 
     elif str(config['METHOD']['REQ_METHOD']) == 'JSON':
+        # data = request.body
+        # try:
+        #     data = json.loads(str(data, 'utf-8'))
+        # except :
+        #     logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
+        # logging.info(str(datetime.datetime.now())+"\tJSON Data received in correct format.")   #Logging message that data received in correct format.
+        # print(data)
+
         data =   {
           "classRoom": "102",
           "courseNumber": "ICS200",
@@ -471,6 +482,7 @@ def TakeAttendence(request):
 
             tree = ET.ElementTree(root)
             tree.write("output.xml")
+            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(open('output.xml').read())
 
         elif config['METHOD']['RSP_METHOD'] == 'CSV':
@@ -492,13 +504,16 @@ def TakeAttendence(request):
                     f.write(i+str(config['METHOD']['DELIMITOR'])+data[i]+'\n')
             with open('output.csv', 'r') as f:
                 data = f.read()
+            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(data, content_type='text/plain')
 
         elif config['METHOD']['RSP_METHOD'] == 'JSON':
+            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
             return JsonResponse(data)
     else:
         data['status'] = 'error occured during validation'
         data['error'] = 'UNAUTHORISED ACCESS'
+        logging.info(str(datetime.datetime.now())+"\tUnauthorized user trying to send and receive data.")         #Logging info that there was an unauthorized access
         return JsonResponse(data)
 
 
