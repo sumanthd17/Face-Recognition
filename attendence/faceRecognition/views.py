@@ -51,7 +51,7 @@ class SessionDelete(DeleteView):
 def ActivateCamera(request, pk):
     if not os.path.exists(str(config['PATHS']['Sessions']) + pk):
         os.mkdir(str(config['PATHS']['Sessions']) + pk)
-        HttpResponse('directory created!!')
+        #HttpResponse('directory created!!')
         # here after creating the directory the images take from the camera should 
         # be saved to the images directory
         # take attendence then takes these images and finds the faces and saves all the 
@@ -211,11 +211,13 @@ def show_prediction_labels_on_image(img_path, predictions,data, counter):
 @csrf_exempt
 def TakeAttendence(request):
 
+    # Reading the config file
     with open('config.json') as json_data:
         config = json.load(json_data)
         print(config)
 
     if str(config['METHOD']['REQ_METHOD']) == 'XML':
+        # accepting the data from request and storing it in data.xml and log the action
         # try:
         #     data = request.body
         # except:
@@ -226,6 +228,7 @@ def TakeAttendence(request):
         # with open('./data.xml', 'w') as file:
         #     file.write(data)
 
+        # extracting all the values from the XML tree structure and creating a JSON structure
         from xml.dom.minidom import parse, Node
         xmlTree = parse("./data.xml")
         #get all departments
@@ -286,6 +289,7 @@ def TakeAttendence(request):
         print(data)
 
     elif str(config['METHOD']['REQ_METHOD']) == 'CSV':
+        # accepting data from request and storing it in file.txt and log the action
         # data = request.body
         # try:
         #     data = data.decode('utf-8')
@@ -295,6 +299,8 @@ def TakeAttendence(request):
         # with open('file.txt', 'w') as file:
         #     file.write(data)
 
+        # extracting the data from the csv data structure and stroing it in JSON data structures
+        # Here we have the option of changing the delimiter
         import csv
         l=[]
         with open('file.txt','r') as csvfile:
@@ -345,6 +351,7 @@ def TakeAttendence(request):
         print(data)
 
     elif str(config['METHOD']['REQ_METHOD']) == 'JSON':
+        # accepting the data from request and storing it in a JSON data structure and log the action
         # data = request.body
         # try:
         #     data = json.loads(str(data, 'utf-8'))
@@ -390,6 +397,7 @@ def TakeAttendence(request):
        data1[key]=0
     data.update(studentlist=data1)
 
+    # encryption of cipher and checking it with config file data
     from Crypto.Cipher import AES
     obj = AES.new(data['SECURITY_KEY'], AES.MODE_CFB, data['SECURITY_CODE'])
     message = data['MESSAGE']
@@ -403,6 +411,7 @@ def TakeAttendence(request):
     # chech the working of cipher later
     if data['MESSAGE'] == 'Attendence':
         PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])
+        # extracting the 5 frames from the video file (Equally spaced)
         vidcap = cv2.VideoCapture(PATH + '/AttendenceVideo.mp4')
         success,image = vidcap.read()
         success = True
@@ -414,13 +423,14 @@ def TakeAttendence(request):
             success,image = vidcap.read()
 
             if count%div == 0 :
-                 cv2.imwrite(PATH + '/Images/frame%d.jpg'%count,image)
+                 cv2.imwrite(PATH + '/Images/frame%d.jpg'%count,image) # storing the images in PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])/Images folder
             count+=1
         count = 0
 
-        
+        # for all the images in the Images folder(group photos) face recognition is appilied 
         for image_file in os.listdir(PATH + '/Images'):
             full_file_path = os.path.join(PATH + '/Images', image_file)
+            # IF a trained classifier already exits for the that class training is skipped
             if not os.path.exists(PATH + '/trained_knn_model.clf'):
                 print("Training KNN classifier...")
                 classifier = train(PATH + '/KnownImages', model_save_path=PATH + "/trained_knn_model.clf", n_neighbors=2)
@@ -432,17 +442,15 @@ def TakeAttendence(request):
             # Note: You can pass in either a classifier file name or a classifier model instance
             predictions = predict(full_file_path, model_path=PATH + "/trained_knn_model.clf")
 
-            #print(data)
             # Print results on the console
             for name, (top, right, bottom, left) in predictions:
                 print("- Found {} at ({}, {})".format(name, left, top))
                 if name in data['studentlist']:
                     data1[name] += 1
-                    #print(data['studentlist'][name])
             count += 1
             show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
-            #print(predictions)
-            #print(data)
+
+        # restructuring the data accorinnd to the need of ERP
         data["studentlist"]=[]
         for key in data1.keys():
           p={}
@@ -452,11 +460,12 @@ def TakeAttendence(request):
         p={}
         p["Frame1"]='Frame1.jpg'
         p["Frame2"]='Frame2.jpg'
-        p["Frame3"]='Frame3jpg'
+        p["Frame3"]='Frame3.jpg'
         p["Frame4"]='Frame4.jpg'
         p["Frame5"]='Frame5.jpg'
         data["imagepaths"].append(p)
-        print(data)
+
+        # restructuring the data in XML format and rendering out XML response
         if config['METHOD']['RSP_METHOD'] == 'XML':
             import xml.etree.cElementTree as ET
             root = ET.Element("data")
@@ -485,6 +494,7 @@ def TakeAttendence(request):
             logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(open('output.xml').read())
 
+        # restructuring the data in CSV format and rendering out in plain text fromat
         elif config['METHOD']['RSP_METHOD'] == 'CSV':
             f = open('output.csv','w')
             for i in data:
@@ -507,14 +517,72 @@ def TakeAttendence(request):
             logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(data, content_type='text/plain')
 
+        # rendering JSON response
         elif config['METHOD']['RSP_METHOD'] == 'JSON':
             logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
             return JsonResponse(data)
+
+    # if authorisation failed while comparing token then error is rendered
     else:
         data['status'] = 'error occured during validation'
         data['error'] = 'UNAUTHORISED ACCESS'
         logging.info(str(datetime.datetime.now())+"\tUnauthorized user trying to send and receive data.")         #Logging info that there was an unauthorized access
-        return JsonResponse(data)
+        # restructuring the data in XML format and rendering out XML response
+        if config['METHOD']['RSP_METHOD'] == 'XML':
+            import xml.etree.cElementTree as ET
+            root = ET.Element("data")
+            cr = ET.SubElement(root, "classRoom").text = data['classRoom']
+            cn = ET.SubElement(root, "courseNumber").text = data['courseNumber']
+            ad = ET.SubElement(root, "attendanceDate").text = data['attendanceDate']
+            fp = ET.SubElement(root, "fromPeriod").text = data['fromPeriod']
+            tp = ET.SubElement(root, "toPeriod").text = data['toPeriod']
+            err = ET.SubElement(root, "error").text = data['error']
+            sta = ET.SubElement(root, "status").text = data['status']
+            sec_key = ET.SubElement(root, "SECURITY_KEY").text = data['SECURITY_KEY']
+            sec_code = ET.SubElement(root, "SECURITY_CODE").text = data['SECURITY_CODE']
+            #ci = ET.SubElement(root, "CIPHER").text = data['CIPHER']
+            msg = ET.SubElement(root, "MESSAGE").text = data['MESSAGE']
+
+            for i in data['studentlist']:
+                for j in i.keys():
+                    sl = ET.SubElement(root, "studentlist",rollNumber=j).text = str(i[j])
+
+            for i in data['imagepaths']:
+                for j in i.keys():
+                    sl = ET.SubElement(root, "imagepaths",rollNumber=j).text = str(i[j])
+
+            tree = ET.ElementTree(root)
+            tree.write("output.xml")
+            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
+            return HttpResponse(open('output.xml').read())
+
+        # restructuring the data in CSV format and rendering out in plain text fromat
+        elif config['METHOD']['RSP_METHOD'] == 'CSV':
+            f = open('output.csv','w')
+            for i in data:
+                if(i=='studentlist'):
+                    f.write('studentlist\nroll numbers start\n')
+                    for j in data[i]:
+                        for k in j.keys():
+                            f.write(str(k)+str(config['METHOD']['DELIMITOR'])+str(j[k])+'\n')
+                    f.write('roll numbers end\n')
+                elif(i=='imagepaths'):
+                    f.write('imagepaths\nimagepath start\n')
+                    for j in data[i]:
+                        for k in j.keys():
+                            f.write(str(k)+str(config['METHOD']['DELIMITOR'])+str(j[k])+'\n')
+                    f.write('imagepath end\n')
+                else:
+                    f.write(i+str(config['METHOD']['DELIMITOR'])+data[i]+'\n')
+            with open('output.csv', 'r') as f:
+                data = f.read()
+            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+            return HttpResponse(data, content_type='text/plain')
+
+        # rendering JSON response
+        elif config['METHOD']['RSP_METHOD'] == 'JSON':
+            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
+            return JsonResponse(data)
 
 
 
