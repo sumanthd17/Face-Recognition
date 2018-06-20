@@ -14,7 +14,7 @@
 		"COLUMN_NAME": "COLUMN_NAME"
 	},
 	"METHOD": {
-		"REQ_METHOD": "XML",
+		"REQ_METHOD": "JSON",
 		"RSP_METHOD": "CSV",
 		"DELIMITOR": ","
 	}

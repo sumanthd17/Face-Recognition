@@ -5,19 +5,24 @@ fromPeriod,07:00
 toPeriod,07:30
 status,
 error,
-SECURITY_KEY,QWERTYUIOPASDFGH
-SECURITY_CODE,ZXCVBNMASDFGHJKL
-MESSAGE,Attendence
 studentlist
 roll numbers start
-201611131,0
-201611125,0
+DSC_0688,0
+DSC_0626,0
+DSC_0011,0
+DSC_0847,1
+DSC_0824,1
 roll numbers end
+SECURITY_KEY,QWERTYUIOPASDFGH
+SECURITY_CODE,ZXCVBNMASDFGHJKL
+CIPHER,:Ý
+µßßbØ
+MESSAGE,Attendence
 imagepaths
 imagepath start
 Frame1,Frame1.jpg
 Frame2,Frame2.jpg
-Frame3,Frame3jpg
+Frame3,Frame3.jpg
 Frame4,Frame4.jpg
 Frame5,Frame5.jpg
 imagepath end

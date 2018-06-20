@@ -1698,3 +1698,147 @@ DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
 DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
 DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
 DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+INFO:root:2018-06-20 09:26:27.806252	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 566, in TakeAttendence
+    for k in j.keys():
+AttributeError: 'str' object has no attribute 'keys'
+INFO:root:2018-06-20 09:28:51.845845	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 580, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: string indices must be integers
+INFO:root:2018-06-20 09:30:29.847713	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 587, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: string indices must be integers
+INFO:root:2018-06-20 09:31:33.905970	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 587, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: string indices must be integers
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 517, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: string indices must be integers
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+INFO:root:2018-06-20 09:38:15.410478	 students CSV data sent successfully.
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 518, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: string indices must be integers
+INFO:root:2018-06-20 09:43:55.965374	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 589, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: string indices must be integers
+INFO:root:2018-06-20 09:45:22.912268	Unauthorized user trying to send and receive data.
+INFO:root:2018-06-20 09:45:22.921510	5 students CSV data sent successfully.
+INFO:root:2018-06-20 09:45:47.411993	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 558, in TakeAttendence
+    for i in data['imagepaths']:
+KeyError: 'imagepaths'
+INFO:root:2018-06-20 09:46:32.226759	Unauthorized user trying to send and receive data.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 560, in TakeAttendence
+    logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
+TypeError: must be str, not int
+INFO:root:2018-06-20 09:47:20.274844	Unauthorized user trying to send and receive data.
+INFO:root:2018-06-20 09:47:20.278405	5 students XML data sent successfully.
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+INFO:root:2018-06-20 09:50:21.386571	5 students XML data sent successfully.
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+INFO:root:2018-06-20 09:51:54.928238	5 students CSV data sent successfully.
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+INFO:root:2018-06-20 09:54:49.326467	5 students CSV data sent successfully.

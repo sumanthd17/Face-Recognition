@@ -1,26 +1,28 @@
-courseNumber,ICS200
 classRoom,102
-attendanceDate,20/10/1990
-toPeriod,7:30
-fromPeriod,7:00
-error, 
-status, 
-SECURITY_KEY,QWERTYUIOPASDFGH
-SECURITY_CODE,ZXCVBNMASDFGHJKL
-CIPHER,:Ý\n\x8bµßßb\x07Ø
-MESSAGE,Attendence
+courseNumber,ICS200
+attendanceDate,08/06/2018
+fromPeriod,07:00
+toPeriod,07:30
+status,
+error,
 studentlist
 roll numbers start
-201611131,0
-201611125,0
-201611122,0
-201611120,0
+DSC_0688,0
+DSC_0626,0
+DSC_0011,0
+DSC_0847,1
+DSC_0824,1
 roll numbers end
+SECURITY_KEY,QWERTYUIOPASDFGH
+SECURITY_CODE,ZXCVBNMASDFGHJKL
+CIPHER,:Ý
+µßßbØ
+MESSAGE,Attendence
 imagepaths
 imagepath start
 Frame1,Frame1.jpg
 Frame2,Frame2.jpg
-Frame3,Frame3jpg
+Frame3,Frame3.jpg
 Frame4,Frame4.jpg
 Frame5,Frame5.jpg
 imagepath end

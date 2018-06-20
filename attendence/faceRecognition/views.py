@@ -491,12 +491,12 @@ def TakeAttendence(request):
 
             tree = ET.ElementTree(root)
             tree.write("output.xml")
-            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
+            logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(open('output.xml').read())
 
         # restructuring the data in CSV format and rendering out in plain text fromat
         elif config['METHOD']['RSP_METHOD'] == 'CSV':
-            f = open('output.csv','w')
+            f = open('output.txt','w')
             for i in data:
                 if(i=='studentlist'):
                     f.write('studentlist\nroll numbers start\n')
@@ -512,14 +512,15 @@ def TakeAttendence(request):
                     f.write('imagepath end\n')
                 else:
                     f.write(i+str(config['METHOD']['DELIMITOR'])+data[i]+'\n')
-            with open('output.csv', 'r') as f:
+
+            logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
+            with open('output.txt', 'r') as f:
                 data = f.read()
-            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(data, content_type='text/plain')
 
         # rendering JSON response
         elif config['METHOD']['RSP_METHOD'] == 'JSON':
-            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
+            logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
             return JsonResponse(data)
 
     # if authorisation failed while comparing token then error is rendered
@@ -527,6 +528,13 @@ def TakeAttendence(request):
         data['status'] = 'error occured during validation'
         data['error'] = 'UNAUTHORISED ACCESS'
         logging.info(str(datetime.datetime.now())+"\tUnauthorized user trying to send and receive data.")         #Logging info that there was an unauthorized access
+
+        data["studentlist"]=[]
+        for key in data1.keys():
+          p={}
+          p[key]=data1[key]
+          data["studentlist"].append(p)
+
         # restructuring the data in XML format and rendering out XML response
         if config['METHOD']['RSP_METHOD'] == 'XML':
             import xml.etree.cElementTree as ET
@@ -547,17 +555,14 @@ def TakeAttendence(request):
                 for j in i.keys():
                     sl = ET.SubElement(root, "studentlist",rollNumber=j).text = str(i[j])
 
-            for i in data['imagepaths']:
-                for j in i.keys():
-                    sl = ET.SubElement(root, "imagepaths",rollNumber=j).text = str(i[j])
-
             tree = ET.ElementTree(root)
             tree.write("output.xml")
-            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
+            logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students XML data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(open('output.xml').read())
 
         # restructuring the data in CSV format and rendering out in plain text fromat
         elif config['METHOD']['RSP_METHOD'] == 'CSV':
+            print(data)
             f = open('output.csv','w')
             for i in data:
                 if(i=='studentlist'):
@@ -566,22 +571,17 @@ def TakeAttendence(request):
                         for k in j.keys():
                             f.write(str(k)+str(config['METHOD']['DELIMITOR'])+str(j[k])+'\n')
                     f.write('roll numbers end\n')
-                elif(i=='imagepaths'):
-                    f.write('imagepaths\nimagepath start\n')
-                    for j in data[i]:
-                        for k in j.keys():
-                            f.write(str(k)+str(config['METHOD']['DELIMITOR'])+str(j[k])+'\n')
-                    f.write('imagepath end\n')
                 else:
                     f.write(i+str(config['METHOD']['DELIMITOR'])+data[i]+'\n')
+            
+            logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
             with open('output.csv', 'r') as f:
                 data = f.read()
-            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students CSV data sent successfully.")         #Logging info that data has been sent successfully.
             return HttpResponse(data, content_type='text/plain')
 
         # rendering JSON response
         elif config['METHOD']['RSP_METHOD'] == 'JSON':
-            logging.info(str(datetime.datetime.now())+"\t"+len(data['studentlist'])+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
+            logging.info(str(datetime.datetime.now())+"\t"+str(len(data['studentlist']))+" students JSON data sent successfully.")         #Logging info that data has been sent successfully.
             return JsonResponse(data)
 
 
