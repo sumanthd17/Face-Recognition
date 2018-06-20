@@ -216,6 +216,25 @@ def TakeAttendence(request):
         config = json.load(json_data)
         print(config)
 
+    if config['USE']['DATABASE'] == 'YES':
+        import MySQLdb
+        conn = MySQLdb.connect(user='root', passwd='mscc@999', db='edu_erp_iiits')
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT Student_Image, student_id FROM student_photos")
+        row = cursor.fetchone()
+        while row is not None:
+            from PIL import Image
+            from base64
+
+            img_str = row[0]
+            roll = row[1]
+            imgdata = base64.b64decode(img_str)
+            filename = str(roll) + '.jpg'
+            with open(filename, 'wb') as f:
+                f.write(imgdata)
+            row = cursor.fetchone()
+
     if str(config['METHOD']['REQ_METHOD']) == 'XML':
         # accepting the data from request and storing it in data.xml and log the action
         # try:
