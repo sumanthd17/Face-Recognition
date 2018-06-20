@@ -285,7 +285,7 @@ def TakeAttendence(request):
         import csv
         l=[]
         with open('file.txt','r') as csvfile:
-          spamreader = csv.reader(csvfile,delimiter='#',quotechar='|')
+          spamreader = csv.reader(csvfile,delimiter=config['METHOD']['DELIMITOR'],quotechar='|')
           for row in spamreader:
             l.append(row)
         count=0
@@ -469,16 +469,16 @@ def TakeAttendence(request):
                     f.write('studentlist\nroll numbers start\n')
                     for j in data[i]:
                         for k in j.keys():
-                            f.write(str(k)+'#'+str(j[k])+'\n')
+                            f.write(str(k)+str(config['METHOD']['DELIMITOR'])+str(j[k])+'\n')
                     f.write('roll numbers end\n')
                 elif(i=='imagepaths'):
                     f.write('imagepaths\nimagepath start\n')
                     for j in data[i]:
                         for k in j.keys():
-                            f.write(str(k)+'#'+str(j[k])+'\n')
+                            f.write(str(k)+str(config['METHOD']['DELIMITOR'])+str(j[k])+'\n')
                     f.write('imagepath end\n')
                 else:
-                    f.write(i+'#'+data[i]+'\n')
+                    f.write(i+str(config['METHOD']['DELIMITOR'])+data[i]+'\n')
         return JsonResponse(data)
     else:
         data['status'] = 'error occured during validation'

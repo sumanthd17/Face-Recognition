@@ -1656,3 +1656,9 @@ Traceback (most recent call last):
 KeyError: 'CIPHER'
 DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
 DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216

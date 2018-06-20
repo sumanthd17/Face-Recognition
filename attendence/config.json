@@ -15,7 +15,7 @@
 	},
 	"METHOD": {
 		"REQ_METHOD": "CSV",
-		"RSP_METHOD": "XML",
-		"DELIMITOR": "NONE"
+		"RSP_METHOD": "CSV",
+		"DELIMITOR": ","
 	}
 }

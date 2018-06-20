@@ -1,15 +1,15 @@
-classRoom#102
-courseNumber#ICS200
-attendanceDate#08/06/2018
-fromPeriod#07:00
-toPeriod#07:30
+classRoom,102
+courseNumber,ICS200
+attendanceDate,08/06/2018
+fromPeriod,07:00
+toPeriod,07:30
 status
 error
-SECURITY_KEY#QWERTYUIOPASDFGH
-SECURITY_CODE#ZXCVBNMASDFGHJKL
-MESSAGE#Attendence
+SECURITY_KEY,QWERTYUIOPASDFGH
+SECURITY_CODE,ZXCVBNMASDFGHJKL
+MESSAGE,Attendence
 studentlist
 roll numbers start
-201611131#0
-201611125#0
+201611131,0
+201611125,0
 roll numbers end
