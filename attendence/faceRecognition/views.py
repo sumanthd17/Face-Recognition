@@ -222,6 +222,11 @@ def TakeAttendence(request):
         print(config)
 
     if str(config['METHOD']['REQ_METHOD']) == 'XML':
+        '''data = request.body
+        data = data.decode('utf-8')
+        with open('./data.xml', 'w') as file:
+            file.write(data)'''
+
         from xml.dom.minidom import parse, Node
         xmlTree = parse("./data.xml")
         #get all departments
@@ -282,6 +287,11 @@ def TakeAttendence(request):
         print(data)
 
     elif str(config['METHOD']['REQ_METHOD']) == 'CSV':
+        '''data = request.body
+        data = data.decode('utf-8')
+        with open('file.txt', 'w') as file:
+            file.write(data)'''
+
         import csv
         l=[]
         with open('file.txt','r') as csvfile:
@@ -460,10 +470,11 @@ def TakeAttendence(request):
                     sl = ET.SubElement(root, "imagepaths",rollNumber=j).text = str(i[j])
 
             tree = ET.ElementTree(root)
-            tree.write("ouput.xml")
+            tree.write("output.xml")
+            return HttpResponse(open('output.xml').read())
 
         elif config['METHOD']['RSP_METHOD'] == 'CSV':
-            f = open('output.txt','w')
+            f = open('output.csv','w')
             for i in data:
                 if(i=='studentlist'):
                     f.write('studentlist\nroll numbers start\n')
@@ -479,7 +490,12 @@ def TakeAttendence(request):
                     f.write('imagepath end\n')
                 else:
                     f.write(i+str(config['METHOD']['DELIMITOR'])+data[i]+'\n')
-        return JsonResponse(data)
+            with open('output.csv', 'r') as f:
+                data = f.read()
+            return HttpResponse(data, content_type='text/plain')
+
+        elif config['METHOD']['RSP_METHOD'] == 'JSON':
+            return JsonResponse(data)
     else:
         data['status'] = 'error occured during validation'
         data['error'] = 'UNAUTHORISED ACCESS'
