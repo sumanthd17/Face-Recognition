@@ -169,7 +169,7 @@ def predict(X_img_path, knn_clf=None, model_path=None, distance_threshold=0.475)
     # Predict classes and remove classifications that aren't within the threshold
     return [(pred, loc) if rec else ("unknown", loc) for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_face_locations, are_matches)]
 
-def show_prediction_labels_on_image(img_path, predictions,data, counter):
+def show_prediction_labels_on_image(img_path, predictions, data, counter):
     """
     Shows the face recognition results visually.
     :param img_path: path to image to be recognized
@@ -207,7 +207,7 @@ def show_prediction_labels_on_image(img_path, predictions,data, counter):
         os.mkdir(PATH)
     print(os.path.abspath(PATH))
 
-    ImgSavePath = '~/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
+    ImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
 
     pil_image.save(ImgSavePath + '/' + 'AnnotedFrame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
@@ -452,6 +452,8 @@ def TakeAttendence(request):
                     roll = row[1]
                     # converting the bas64 str to image and saving the photo to KnoenImages directory
                     imgdata = base64.b64decode(img_str)
+                    if not os.path.exists(PATH + '/KnownImages'):
+                        os.mkdir(PATH + '/KnownImages')
                     if not os.path.exists(PATH + '/KnownImages/' + str(roll)):
                         os.mkdir(PATH + '/KnownImages/' + str(roll))
                     filename = PATH + '/KnownImages/' + str(roll) + '/' + str(roll) + '.jpg'
