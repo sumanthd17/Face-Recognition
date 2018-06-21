@@ -441,12 +441,12 @@ def TakeAttendence(request):
                 cursor = conn.cursor()
 
                 # RAW mysql query for getting images and roll numbers
-                cursor.execute("SELECT" + config['DATABASE']['PHOTO_CLM'] + ',' + config['DATABASE']['ROLL_CLM'] +  "FROM" + config['DATABASE']['TABLE_NAME'])
+                cursor.execute("SELECT " + config['DATABASE']['PHOTO_CLM'] + ',' + config['DATABASE']['ROLL_CLM'] +  " FROM " + config['DATABASE']['TABLE_NAME'])
                 row = cursor.fetchone()
                 # accessing one row of the table at a time
                 while row is not None:
                     from PIL import Image
-                    from base64
+                    import base64
 
                     img_str = row[0]
                     roll = row[1]
