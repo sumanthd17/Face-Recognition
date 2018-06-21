@@ -213,9 +213,9 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
         os.mkdir(PATH)
     print(os.path.abspath(PATH))
 
-    #ImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
-    #pil_image.save(ImgSavePath + '/' + 'recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
-    pil_image.save('recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    ImgSavePath = '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
+    pil_image.save(ImgSavePath + '/' + 'recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    #pil_image.save('recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
     # for saving unrecognised Images
     pil_uk_image = Image.open(img_path).convert("RGB")
@@ -241,9 +241,9 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
 
     # Remove the drawing library from memory as per the Pillow docs
     del draw
-    #UKImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
-    #pil_image.save(UKImgSavePath + '/' + 'unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
-    pil_uk_image.save('unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    UKImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
+    pil_image.save(UKImgSavePath + '/' + 'unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    #pil_uk_image.save('unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
 def TakeAttendence(request):
@@ -435,13 +435,13 @@ def TakeAttendence(request):
     data.update(studentlist=data1)
 
     # encryption of cipher and checking it with config file data
-    from Crypto.Cipher import AES
-    obj = AES.new(data['SECURITY_KEY'], AES.MODE_CFB, data['SECURITY_CODE'])
-    message = data['MESSAGE']
-    cipher1 = obj.encrypt(message)
-    obj2 = AES.new(config['SECURITY']['KEY'], AES.MODE_CFB, config['SECURITY']['CODE'])
-    message2 = config['SECURITY']['MESSAGE']
-    cipher2 = obj2.encrypt(message2)
+    # from Crypto.Cipher import AES
+    # obj = AES.new(data['SECURITY_KEY'], AES.MODE_CFB, data['SECURITY_CODE'])
+    # message = data['MESSAGE']
+    # cipher1 = obj.encrypt(message)
+    # obj2 = AES.new(config['SECURITY']['KEY'], AES.MODE_CFB, config['SECURITY']['CODE'])
+    # message2 = config['SECURITY']['MESSAGE']
+    # cipher2 = obj2.encrypt(message2)
     #DECODED = obj2.decrypt(cipher).decode('utf-8')
     #print(DECODED)
 
@@ -461,8 +461,8 @@ def TakeAttendence(request):
 
             if count%div == 0 :
                  cv2.imwrite(PATH + '/Images/frame%d.jpg'%count,image) # storing the images in PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])/Images folder
-            count+=1
-        count = 0'''
+            count+=1'''
+        count = 0
 
         # for all the images in the Images folder(group photos) face recognition is appilied 
         for image_file in os.listdir(PATH + '/Images'):
