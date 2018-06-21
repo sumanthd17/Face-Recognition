@@ -480,13 +480,13 @@ def TakeAttendence(request):
             count += 1
             show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
 
-            # deleting the KnownImages folder after he attendence has been taken
-            # optional - delete the classifer after he attendence has been taken
-            if config['USE']['DATABASE'] == 'YES':
-                os.remove(PATH + '/KnownImages')
-                os.remove(PATH + '/trained_knn_model.clf')
-            elif config['USE']['DATABASE'] == 'NO':
-                os.remove(PATH + '/trained_knn_model.clf')
+        # deleting the KnownImages folder after he attendence has been taken
+        # optional - delete the classifer after he attendence has been taken
+        if config['USE']['DATABASE'] == 'YES':
+            os.remove(PATH + '/KnownImages')
+            os.remove(PATH + '/trained_knn_model.clf')
+        elif config['USE']['DATABASE'] == 'NO':
+            os.remove(PATH + '/trained_knn_model.clf')
 
         # restructuring the data accorinnd to the need of ERP
         data["studentlist"]=[]
