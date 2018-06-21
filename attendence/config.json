@@ -9,12 +9,14 @@
 	},
 	"USE": {
 		"DATABASE": "YES"
-	}
+	},
 	"DATABASE": {
-		"USERNAME": "USERNAME",
-		"PASSWORD": "PASSWORD",
-		"TABLE_NAME": "TABLE_NAME",
-		"COLUMN_NAME": "COLUMN_NAME"
+		"USERNAME": "root",
+		"PASSWORD": "mscc@999",
+		"TABLE_NAME": "student_photos",
+		"DB_NAME": "edu_erp_iiits",
+		"PHOTO_CLM": "student_image",
+		"ROLL_CLM": "student_id"
 	},
 	"METHOD": {
 		"REQ_METHOD": "JSON",

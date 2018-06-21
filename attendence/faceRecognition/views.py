@@ -216,25 +216,6 @@ def TakeAttendence(request):
         config = json.load(json_data)
         print(config)
 
-    if config['USE']['DATABASE'] == 'YES':
-        import MySQLdb
-        conn = MySQLdb.connect(user='root', passwd='mscc@999', db='edu_erp_iiits')
-        cursor = conn.cursor()
-
-        cursor.execute("SELECT Student_Image, student_id FROM student_photos")
-        row = cursor.fetchone()
-        while row is not None:
-            from PIL import Image
-            from base64
-
-            img_str = row[0]
-            roll = row[1]
-            imgdata = base64.b64decode(img_str)
-            filename = str(roll) + '.jpg'
-            with open(filename, 'wb') as f:
-                f.write(imgdata)
-            row = cursor.fetchone()
-
     if str(config['METHOD']['REQ_METHOD']) == 'XML':
         # accepting the data from request and storing it in data.xml and log the action
         # try:
@@ -449,6 +430,33 @@ def TakeAttendence(request):
         # for all the images in the Images folder(group photos) face recognition is appilied 
         for image_file in os.listdir(PATH + '/Images'):
             full_file_path = os.path.join(PATH + '/Images', image_file)
+
+            if config['USE']['DATABASE'] == 'YES':
+                # connecting to the database 
+                import MySQLdb
+                conn = MySQLdb.connect(user=config['DATABASE']['USERNAME'], passwd=config['DATABASE']['PASSWORD'], db=config['DATABASE']['DB_NAME'])
+                cursor = conn.cursor()
+
+                # RAW mysql query for getting images and roll numbers
+                cursor.execute("SELECT" + config['DATABASE']['PHOTO_CLM'] + ',' + config['DATABASE']['ROLL_CLM'] +  "FROM" + config['DATABASE']['TABLE_NAME'])
+                row = cursor.fetchone()
+                # accessing one row of the table at a time
+                while row is not None:
+                    from PIL import Image
+                    from base64
+
+                    img_str = row[0]
+                    roll = row[1]
+                    # converting the bas64 str to image and saving the photo to KnoenImages directory
+                    imgdata = base64.b64decode(img_str)
+                    if not os.path.exists(PATH + '/KnownImages'):
+                        os.mkdir(PATH + '/KnownImages')
+                    filename = PATH + '/KnownImages/' + str(roll) + '.jpg'
+                    with open(filename, 'wb') as f:
+                        f.write(imgdata)
+                    row = cursor.fetchone()
+
+
             # IF a trained classifier already exits for the that class training is skipped
             if not os.path.exists(PATH + '/trained_knn_model.clf'):
                 print("Training KNN classifier...")
@@ -468,6 +476,14 @@ def TakeAttendence(request):
                     data1[name] += 1
             count += 1
             show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
+
+            # deleting the KnownImages folder after he attendence has been taken
+            # optional - delete the classifer after he attendence has been taken
+            if config['USE']['DATABASE'] == 'YES':
+                os.remove(PATH + '/KnownImages')
+                os.remove(PATH + '/trained_knn_model.clf')
+            elif config['USE']['DATABASE'] == 'NO':
+                os.remove(PATH + '/trained_knn_model.clf')
 
         # restructuring the data accorinnd to the need of ERP
         data["studentlist"]=[]
