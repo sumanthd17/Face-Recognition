@@ -190,6 +190,11 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
 
         # There's a bug in Pillow where it blows up with non-UTF-8 text
         # when using the default bitmap font
+        if name == 'unknown':
+            continue
+        else:
+            name = 'P'
+
         name = name.encode("UTF-8")
 
         # Draw a label with a name below the face
@@ -208,8 +213,34 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
     print(os.path.abspath(PATH))
 
     ImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
+    pil_image.save(ImgSavePath + '/' + 'recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
-    pil_image.save(ImgSavePath + '/' + 'AnnotedFrame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    # for saving unrecognised Images
+    pil_uk_image = Image.open(img_path).convert("RGB")
+    draw = ImageDraw.Draw(pil_uk_image)
+
+    for name, (top, right, bottom, left) in predictions:
+        # Draw a box around the face using the Pillow module
+        draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+
+        # There's a bug in Pillow where it blows up with non-UTF-8 text
+        # when using the default bitmap font
+        if name == 'unknown':
+            name = 'UK'
+        else:
+            continue
+
+        name = name.encode("UTF-8")
+
+        # Draw a label with a name below the face
+        text_width, text_height = draw.textsize(name)
+        draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+        draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+
+    # Remove the drawing library from memory as per the Pillow docs
+    del draw
+    UKImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
+    pil_image.save(UKImgSavePath + '/' + 'unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
 def TakeAttendence(request):
