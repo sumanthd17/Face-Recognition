@@ -206,7 +206,10 @@ def show_prediction_labels_on_image(img_path, predictions,data, counter):
     if not os.path.exists(PATH):
         os.mkdir(PATH)
     print(os.path.abspath(PATH))
-    pil_image.save(PATH + '/' + 'Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+
+    ImgSavePath = '~/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
+
+    pil_image.save(ImgSavePath + '/' + 'AnnotedFrame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
 def TakeAttendence(request):
