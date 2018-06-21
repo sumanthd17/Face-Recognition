@@ -17,6 +17,7 @@ import cv2
 import math
 import json
 import logging
+import shutil
 logging.basicConfig(filename='../LogFile.log', level=logging.DEBUG)
 
 # Create your views here.
@@ -199,8 +200,8 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
 
         # Draw a label with a name below the face
         text_width, text_height = draw.textsize(name)
-        draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
-        draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+        draw.rectangle(((left, bottom - text_height + 20), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+        draw.text((left + 6, bottom - text_height + 10), name, fill=(255, 255, 255, 255))
 
     # Remove the drawing library from memory as per the Pillow docs
     del draw
@@ -212,8 +213,9 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
         os.mkdir(PATH)
     print(os.path.abspath(PATH))
 
-    ImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
-    pil_image.save(ImgSavePath + '/' + 'recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    #ImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
+    #pil_image.save(ImgSavePath + '/' + 'recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    pil_image.save('recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
     # for saving unrecognised Images
     pil_uk_image = Image.open(img_path).convert("RGB")
@@ -234,13 +236,14 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
 
         # Draw a label with a name below the face
         text_width, text_height = draw.textsize(name)
-        draw.rectangle(((left, bottom - text_height - 10), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
-        draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
+        draw.rectangle(((left, bottom - text_height + 20), (right, bottom)), fill=(0, 0, 255), outline=(0, 0, 255))
+        draw.text((left + 6, bottom - text_height + 10), name, fill=(255, 255, 255, 255))
 
     # Remove the drawing library from memory as per the Pillow docs
     del draw
-    UKImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
-    pil_image.save(UKImgSavePath + '/' + 'unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    #UKImgSavePath = '../../../usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
+    #pil_image.save(UKImgSavePath + '/' + 'unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    pil_uk_image.save('unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
 def TakeAttendence(request):
@@ -386,45 +389,45 @@ def TakeAttendence(request):
 
     elif str(config['METHOD']['REQ_METHOD']) == 'JSON':
         # accepting the data from request and storing it in a JSON data structure and log the action
-        # data = request.body
-        # try:
-        #     data = json.loads(str(data, 'utf-8'))
-        # except :
-        #     logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
-        # logging.info(str(datetime.datetime.now())+"\tJSON Data received in correct format.")   #Logging message that data received in correct format.
-        # print(data)
+        data = request.body
+        try:
+            data = json.loads(str(data, 'utf-8'))
+        except :
+            logging.error(str(datetime.datetime.now())+"\tJSON Data not received in correct format.")   #Logging Error message if data not received in correct format.
+        logging.info(str(datetime.datetime.now())+"\tJSON Data received in correct format.")   #Logging message that data received in correct format.
+        print(data)
 
-        data =   {
-          "classRoom": "102",
-          "courseNumber": "ICS200",
-          "attendanceDate": "08/06/2018",
-          "fromPeriod": "07:00",
-          "toPeriod": "07:30",
-          "status": "",
-          "error": "",
-          "studentlist": [
-            {
-              "DSC_0688": 0
-            },
-            {
-              "DSC_0626": 0
-            },
-            {
-              "DSC_0011": 0
-            },
-            {
-              "DSC_0847": 0
-            },
-            {
-              "DSC_0824": 0
-            }
-          ],
-          "SECURITY_KEY": "QWERTYUIOPASDFGH",
-          "SECURITY_CODE": "ZXCVBNMASDFGHJKL",
-          #"CIPHER": b':\xdd\n\x8b\xb5\xdf\xdfb\x07\xd8'
-          "CIPHER": ':Ý\n\x8bµßßb\x07Ø',
-          "MESSAGE": "Attendence"
-        }
+        # data =   {
+        #   "classRoom": "102",
+        #   "courseNumber": "ICS200",
+        #   "attendanceDate": "08/06/2018",
+        #   "fromPeriod": "07:00",
+        #   "toPeriod": "07:30",
+        #   "status": "",
+        #   "error": "",
+        #   "studentlist": [
+        #     {
+        #       "DSC_0688": 0
+        #     },
+        #     {
+        #       "DSC_0626": 0
+        #     },
+        #     {
+        #       "DSC_0011": 0
+        #     },
+        #     {
+        #       "DSC_0847": 0
+        #     },
+        #     {
+        #       "DSC_0824": 0
+        #     }
+        #   ],
+        #   "SECURITY_KEY": "QWERTYUIOPASDFGH",
+        #   "SECURITY_CODE": "ZXCVBNMASDFGHJKL",
+        #   #"CIPHER": b':\xdd\n\x8b\xb5\xdf\xdfb\x07\xd8'
+        #   "CIPHER": ':Ý\n\x8bµßßb\x07Ø',
+        #   "MESSAGE": "Attendence"
+        # }
     data1={}
     for i in range(0,len(data["studentlist"])):
       for key in data["studentlist"][i].keys():
@@ -446,7 +449,7 @@ def TakeAttendence(request):
     if data['MESSAGE'] == 'Attendence':
         PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])
         # extracting the 5 frames from the video file (Equally spaced)
-        vidcap = cv2.VideoCapture(PATH + '/AttendenceVideo.mp4')
+        '''vidcap = cv2.VideoCapture(PATH + '/AttendenceVideo.mp4')
         success,image = vidcap.read()
         success = True
         length = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -459,7 +462,7 @@ def TakeAttendence(request):
             if count%div == 0 :
                  cv2.imwrite(PATH + '/Images/frame%d.jpg'%count,image) # storing the images in PATH = str(config['PATHS']['Sessions']) + str(data['classRoom']) + '/' + str(data['courseNumber'])/Images folder
             count+=1
-        count = 0
+        count = 0'''
 
         # for all the images in the Images folder(group photos) face recognition is appilied 
         for image_file in os.listdir(PATH + '/Images'):
@@ -519,7 +522,8 @@ def TakeAttendence(request):
             shutil.rmtree(PATH + '/KnownImages')
             os.remove(PATH + '/trained_knn_model.clf')
         elif config['USE']['DATABASE'] == 'NO':
-            os.remove(PATH + '/trained_knn_model.clf')
+            #os.remove(PATH + '/trained_knn_model.clf')
+            print('ggwp')
 
         # restructuring the data accorinnd to the need of ERP
         data["studentlist"]=[]

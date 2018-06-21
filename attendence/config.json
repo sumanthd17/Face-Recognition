@@ -8,7 +8,7 @@
 		"MESSAGE": "Attendence"
 	},
 	"USE": {
-		"DATABASE": "YES"
+		"DATABASE": "NO"
 	},
 	"DATABASE": {
 		"USERNAME": "root",
@@ -20,7 +20,7 @@
 	},
 	"METHOD": {
 		"REQ_METHOD": "JSON",
-		"RSP_METHOD": "CSV",
+		"RSP_METHOD": "JSON",
 		"DELIMITOR": ","
 	}
 }
