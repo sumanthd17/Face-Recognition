@@ -483,7 +483,7 @@ def TakeAttendence(request):
         # deleting the KnownImages folder after he attendence has been taken
         # optional - delete the classifer after he attendence has been taken
         if config['USE']['DATABASE'] == 'YES':
-            os.remove(PATH + '/KnownImages')
+            shutil.rmtree(PATH + '/KnownImages')
             os.remove(PATH + '/trained_knn_model.clf')
         elif config['USE']['DATABASE'] == 'NO':
             os.remove(PATH + '/trained_knn_model.clf')
