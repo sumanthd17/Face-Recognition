@@ -449,9 +449,9 @@ def TakeAttendence(request):
                     roll = row[1]
                     # converting the bas64 str to image and saving the photo to KnoenImages directory
                     imgdata = base64.b64decode(img_str)
-                    if not os.path.exists(PATH + '/KnownImages'):
-                        os.mkdir(PATH + '/KnownImages')
-                    filename = PATH + '/KnownImages/' + str(roll) + '.jpg'
+                    if not os.path.exists(PATH + '/KnownImages/' + str(roll)):
+                        os.mkdir(PATH + '/KnownImages/' + str(roll))
+                    filename = PATH + '/KnownImages/' + str(roll) + '/' + str(roll) + '.jpg'
                     with open(filename, 'wb') as f:
                         f.write(imgdata)
                     row = cursor.fetchone()
