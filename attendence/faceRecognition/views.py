@@ -18,6 +18,7 @@ import math
 import json
 import logging
 import shutil
+import time
 logging.basicConfig(filename='../LogFile.log', level=logging.DEBUG)
 
 # Create your views here.
@@ -214,7 +215,7 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
     print(os.path.abspath(PATH))
 
     ImgSavePath = '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
-    pil_image.save(ImgSavePath + '/' +str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+time.strftime("%d/%m/%Y")+'_'+time.strftime("%I:%M")+ '_recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    pil_image.save(ImgSavePath + '/' +str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+str(time.strftime("%d-%m-%Y"))+'_'+time.strftime("%I:%M")+ '_recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
     #pil_image.save('recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
     # for saving unrecognised Images
@@ -242,7 +243,7 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
     # Remove the drawing library from memory as per the Pillow docs
     del draw
     UKImgSavePath = '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
-    pil_uk_image.save(UKImgSavePath + '/'+str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+time.strftime("%d/%m/%Y")+'_'+time.strftime("%I:%M")+'_unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    pil_uk_image.save(UKImgSavePath + '/'+str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+time.strftime("%d-%m-%Y")+'_'+time.strftime("%I:%M")+'_unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
     #pil_uk_image.save('unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
@@ -522,8 +523,8 @@ def TakeAttendence(request):
             shutil.rmtree(PATH + '/KnownImages')
             os.remove(PATH + '/trained_knn_model.clf')
         elif config['USE']['DATABASE'] == 'NO':
-            #os.remove(PATH + '/trained_knn_model.clf')
-            print('ggwp')
+            os.remove(PATH + '/trained_knn_model.clf')
+            #print('ggwp')
 
         # restructuring the data accorinnd to the need of ERP
         data["studentlist"]=[]
