@@ -1,6 +1,7 @@
 {
 	"PATHS": {
-		"Sessions": "./AvailableSessions/"
+		"Sessions": "./AvailableSessions/",
+		"AnnotedImgPath": "/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages"
 	},
 	"SECURITY": {
 		"KEY": "QWERTYUIOPASDFGH",
@@ -22,5 +23,5 @@
 		"REQ_METHOD": "JSON",
 		"RSP_METHOD": "JSON",
 		"DELIMITOR": ","
-	}
+	},
 }

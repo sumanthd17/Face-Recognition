@@ -214,7 +214,7 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
         os.mkdir(PATH)
     print(os.path.abspath(PATH))
 
-    ImgSavePath = '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages'
+    ImgSavePath = config['PATHS']['AnnotedImgPath']
     pil_image.save(ImgSavePath + '/' +str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+str(time.strftime("%d-%m-%Y"))+'_'+time.strftime("%I:%M")+ '_recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
     #pil_image.save('recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
