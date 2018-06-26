@@ -215,7 +215,7 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
     print(os.path.abspath(PATH))
 
     ImgSavePath = config['PATHS']['AnnotedImgPath']
-    pil_image.save(ImgSavePath + '/' +str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+str(time.strftime("%d-%m-%Y"))+'_'+time.strftime("%I:%M")+ '_recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    pil_image.save(ImgSavePath + '/' +str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+'p' + '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
     #pil_image.save('recognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
     # for saving unrecognised Images
@@ -242,8 +242,8 @@ def show_prediction_labels_on_image(img_path, predictions, data, counter):
 
     # Remove the drawing library from memory as per the Pillow docs
     del draw
-    UKImgSavePath = '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
-    pil_uk_image.save(UKImgSavePath + '/'+str(data['classRoom'])+'_'+str(data['courseNumber'])+'_'+time.strftime("%d-%m-%Y")+'_'+time.strftime("%I:%M")+'_unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+    #UKImgSavePath = '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/studentAttendanceImages/unrecognised'
+    pil_uk_image.save(ImgSavePath + '/'+str(data['classRoom'])+'_'+str(data['courseNumber'])+'_' + 'nr'+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
     #pil_uk_image.save('unrecognisedFaces_Frame'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
 
 @csrf_exempt
@@ -256,15 +256,15 @@ def TakeAttendence(request):
 
     if str(config['METHOD']['REQ_METHOD']) == 'XML':
         # accepting the data from request and storing it in data.xml and log the action
-        # try:
-        #     data = request.body
-        # except:
-        #     logging.error(str(datetime.datetime.now())+"\tXML Data not received in correct format.")   #Logging Error message if data not received in correct format.
-        # logging.info(str(datetime.datetime.now())+"\tXML Data received in correct format.")   #Logging message that data received in correct format.
+        try:
+            data = request.body
+        except:
+            logging.error(str(datetime.datetime.now())+"\tXML Data not received in correct format.")   #Logging Error message if data not received in correct format.
+        logging.info(str(datetime.datetime.now())+"\tXML Data received in correct format.")   #Logging message that data received in correct format.
             
-        # data = data.decode('utf-8')
-        # with open('./data.xml', 'w') as file:
-        #     file.write(data)
+        data = data.decode('utf-8')
+        with open('./data.xml', 'w') as file:
+            file.write(data)
 
         # extracting all the values from the XML tree structure and creating a JSON structure
         from xml.dom.minidom import parse, Node
@@ -328,14 +328,14 @@ def TakeAttendence(request):
 
     elif str(config['METHOD']['REQ_METHOD']) == 'CSV':
         # accepting data from request and storing it in file.txt and log the action
-        # data = request.body
-        # try:
-        #     data = data.decode('utf-8')
-        # except:
-        #     logging.error(str(datetime.datetime.now())+"\tCSV Data not received in correct format.")   #Logging Error message if data not received in correct format.
-        # logging.info(str(datetime.datetime.now())+"\tCSV Data received in correct format.")   #Logging message that data received in correct format.
-        # with open('file.txt', 'w') as file:
-        #     file.write(data)
+        data = request.body
+        try:
+            data = data.decode('utf-8')
+        except:
+            logging.error(str(datetime.datetime.now())+"\tCSV Data not received in correct format.")   #Logging Error message if data not received in correct format.
+        logging.info(str(datetime.datetime.now())+"\tCSV Data received in correct format.")   #Logging message that data received in correct format.
+        with open('file.txt', 'w') as file:
+            file.write(data)
 
         # extracting the data from the csv data structure and stroing it in JSON data structures
         # Here we have the option of changing the delimiter
@@ -515,7 +515,7 @@ def TakeAttendence(request):
                 if name in data['studentlist']:
                     data1[name] += 1
             count += 1
-            show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
+        show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
 
         # deleting the KnownImages folder after he attendence has been taken
         # optional - delete the classifer after he attendence has been taken

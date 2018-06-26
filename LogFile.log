@@ -1911,3 +1911,58 @@ DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
 DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
 DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 1216
 INFO:root:2018-06-21 07:40:48.878728	5 students CSV data sent successfully.
+WARNING:django.request:Not Found: /favicon.ico
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 254, in TakeAttendence
+    config = json.load(json_data)
+  File "/usr/lib/python3.6/json/__init__.py", line 299, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 355, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 27 column 1 (char 556)
+ERROR:root:2018-06-26 10:13:49.601262	JSON Data not received in correct format.
+INFO:root:2018-06-26 10:13:49.601395	JSON Data received in correct format.
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 433, in TakeAttendence
+    for i in range(0,len(data["studentlist"])):
+TypeError: byte indices must be integers or slices, not str
+ERROR:django.request:Internal Server Error: /faceRecognition/session/TakeAttendence/
+Traceback (most recent call last):
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 518, in TakeAttendence
+    show_prediction_labels_on_image(os.path.join(PATH + '/Images', image_file), predictions,data, count)
+  File "/home/sumanth/Desktop/ERP/attendence/faceRecognition/views.py", line 246, in show_prediction_labels_on_image
+    pil_uk_image.save(ImgSavePath + '/'+str(data['classRoom'])+'_'+str(data['courseNumber'])+'_' + 'nr'+str(counter)+ '.jpg', 'JPEG', quality=80, optimize=True, progressive=True)
+  File "/home/sumanth/Desktop/intern/lib/python3.6/site-packages/PIL/Image.py", line 1932, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: '/usr/local/apache-tomcat-8.5.8/webapps/Edu_Erp_IIITS/assets/images/102_ICS200_nr6.jpg'
+INFO:root:2018-06-26 10:16:06.044799	5 students JSON data sent successfully.
