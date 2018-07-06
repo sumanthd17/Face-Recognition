@@ -78,6 +78,7 @@ Will be updated soon.
 This project is licensed under the MIT License.
 
 ## Acknowledgements
+* Kasturi Rangan Rajagopalan for orignal idea and solution design
 * [ageitgey](https://github.com/ageitgey/face_recognition) for creating an excellent module for face_recognition
 * [MSCC](http://msconsortium.co.in/)(Mind Space Consulting Consortium) for giving us an oppurtunity do this project.
 * Ravi Venkatraman Sir who helped and guided us in making the project successful.
