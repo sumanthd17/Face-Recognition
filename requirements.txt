@@ -4,7 +4,7 @@ click==6.7
 Django==2.0.5
 django-cors-headers==2.3.0
 django-mysql==2.2.2
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 face-recognition==1.2.2
 face-recognition-models==0.3.0
 idna==2.6
