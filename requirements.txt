@@ -10,7 +10,7 @@ face-recognition-models==0.3.0
 idna==2.6
 jsonfield==2.0.2
 numpy==1.14.3
-opencv-python==3.4.1.15
+opencv-python==4.2.0.32
 Pillow==5.1.0
 pkg-resources==0.0.0
 pycrypto==2.6.1
